@@ -12,7 +12,16 @@ chacha20.o: chacha20.c /usr/include/stdc-predef.h \
  /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/sys/_types.h \
  /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/machine/_types.h \
  /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/ssp/stdio.h \
- /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/ssp/ssp.h
+ /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/ssp/ssp.h \
+ /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/stdint.h \
+ /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/sys/_stdint.h \
+ /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/sys/_intsup.h \
+ /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/string.h \
+ /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/sys/_locale.h \
+ /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/strings.h \
+ /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/ssp/strings.h \
+ /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/sys/string.h \
+ /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/ssp/string.h
 /usr/include/stdc-predef.h:
 /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/stdio.h:
 /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/sys/cdefs.h:
@@ -28,3 +37,12 @@ chacha20.o: chacha20.c /usr/include/stdc-predef.h \
 /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/machine/_types.h:
 /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/ssp/stdio.h:
 /root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/ssp/ssp.h:
+/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/stdint.h:
+/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/sys/_stdint.h:
+/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/sys/_intsup.h:
+/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/string.h:
+/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/sys/_locale.h:
+/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/strings.h:
+/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/ssp/strings.h:
+/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/sys/string.h:
+/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include/ssp/string.h:
