@@ -1,0 +1,16 @@
+[binaries]
+c     = 'riscv64-linux-gnu-gcc'
+ar    = 'riscv64-linux-gnu-gcc-ar'
+as    = 'riscv64-linux-gnu-as'
+nm    = 'riscv64-linux-gnu-gcc-nm'
+strip = 'riscv64-linux-gnu-strip'
+
+[host_machine]
+system     = 'unknown'
+cpu_family = 'riscv'
+cpu        = 'vexriscv'
+endian     = 'little'
+
+[built-in options]
+c_args      = [ '-Os', '-march=rv32i2p0_m', '-mabi=ilp32', '-D__vexriscv__', '-g3', '-no-pie', '-fomit-frame-pointer', '-Wall', '-fno-builtin', '-fno-stack-protector', '-I/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include', '-I/root/litex/litex/litex/soc/software/libbase', '-I/root/litex/litex/litex/soc/software/include', '-I/root/litex/litex/litex/soc/software', '-I/workspace/build/sim/software/include', '-I/workspace/build/sim/software/include/../libc', '-I/root/litex/litex/litex/soc/cores/cpu/vexriscv', '-fexceptions', '-Wpragmas', ]
+c_link_args = [ '-nostdlib', '-nodefaultlibs', '-Wl,--no-dynamic-linker', '-Wl,--build-id=none', '-MD', '-MP', '-Os', '-march=rv32i2p0_m', '-mabi=ilp32', '-D__vexriscv__', '-g3', '-no-pie', '-fomit-frame-pointer', '-Wall', '-fno-builtin', '-fno-stack-protector', '-I/root/litex/pythondata-software-picolibc/pythondata_software_picolibc/data/libc/include', '-I/root/litex/litex/litex/soc/software/libbase', '-I/root/litex/litex/litex/soc/software/include', '-I/root/litex/litex/litex/soc/software', '-I/workspace/build/sim/software/include', '-I/workspace/build/sim/software/include/../libc', '-I/root/litex/litex/litex/soc/cores/cpu/vexriscv', '-fexceptions', '-Wpragmas', '-L/workspace/build/sim/software/include', ]
