@@ -1736,7 +1736,6 @@ Discarded input sections
  .debug_macro   0x0000000000000000       0x22 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
  .debug_macro   0x0000000000000000       0x16 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
  .debug_macro   0x0000000000000000       0x16 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
- .debug_macro   0x0000000000000000       0x94 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
  .debug_macro   0x0000000000000000       0x6a ../../build/sim/software/libc/libc.a(_libc_minimal.a)
  .debug_macro   0x0000000000000000       0xfd ../../build/sim/software/libc/libc.a(_libc_minimal.a)
  .debug_macro   0x0000000000000000      0x1df ../../build/sim/software/libc/libc.a(_libc_minimal.a)
@@ -6237,7 +6236,7 @@ OUTPUT(proy1.elf elf32-littleriscv)
  .debug_aranges
                 0x0000000000000268       0x20 ../../build/sim/software/libbase/libbase.a(isr.o)
 
-.debug_macro    0x0000000000000000     0x55f3
+.debug_macro    0x0000000000000000     0x5687
  .debug_macro   0x0000000000000000       0xd1 helloc.o
  .debug_macro   0x00000000000000d1      0x7a8 helloc.o
  .debug_macro   0x0000000000000879       0x10 helloc.o
@@ -6330,11 +6329,12 @@ OUTPUT(proy1.elf elf32-littleriscv)
  .debug_macro   0x0000000000004f14       0x82 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
  .debug_macro   0x0000000000004f96       0x18 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
  .debug_macro   0x0000000000004fae      0x14a ../../build/sim/software/libc/libc.a(_libc_minimal.a)
- .debug_macro   0x00000000000050f8       0xf6 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
- .debug_macro   0x00000000000051ee       0xe1 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
- .debug_macro   0x00000000000052cf       0xdb ../../build/sim/software/libbase/libbase.a(console.o)
- .debug_macro   0x00000000000053aa       0xfc ../../build/sim/software/libbase/libbase.a(uart.o)
- .debug_macro   0x00000000000054a6      0x14d ../../build/sim/software/libbase/libbase.a(isr.o)
+ .debug_macro   0x00000000000050f8       0x94 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_macro   0x000000000000518c       0xf6 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_macro   0x0000000000005282       0xe1 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+ .debug_macro   0x0000000000005363       0xdb ../../build/sim/software/libbase/libbase.a(console.o)
+ .debug_macro   0x000000000000543e       0xfc ../../build/sim/software/libbase/libbase.a(uart.o)
+ .debug_macro   0x000000000000553a      0x14d ../../build/sim/software/libbase/libbase.a(isr.o)
 
 .debug_line     0x0000000000000000     0x3487
  .debug_line    0x0000000000000000       0xb5 helloc.o
@@ -6358,7 +6358,7 @@ OUTPUT(proy1.elf elf32-littleriscv)
  .debug_line    0x00000000000029ac      0x76f ../../build/sim/software/libbase/libbase.a(uart.o)
  .debug_line    0x000000000000311b      0x36c ../../build/sim/software/libbase/libbase.a(isr.o)
 
-.debug_str      0x0000000000000000    0x105d6
+.debug_str      0x0000000000000000    0x1060f
  .debug_str     0x0000000000000000     0x52a0 helloc.o
                                        0x53d7 (size before relaxing)
  .debug_str     0x00000000000052a0       0x2d add_asm.o
@@ -6388,14 +6388,14 @@ OUTPUT(proy1.elf elf32-littleriscv)
                                        0x4efe (size before relaxing)
  .debug_str     0x000000000000d82c     0x2794 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
                                        0xdebf (size before relaxing)
- .debug_str     0x000000000000ffc0       0x46 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_str     0x000000000000ffc0       0x7f ../../build/sim/software/libc/libc.a(_libc_minimal.a)
                                        0x755d (size before relaxing)
- .debug_str     0x0000000000010006      0x3bd ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+ .debug_str     0x000000000001003f      0x3bd ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
                                        0x5ce8 (size before relaxing)
- .debug_str     0x00000000000103c3     0x6301 ../../build/sim/software/libbase/libbase.a(console.o)
- .debug_str     0x00000000000103c3      0x1ed ../../build/sim/software/libbase/libbase.a(uart.o)
+ .debug_str     0x00000000000103fc     0x6301 ../../build/sim/software/libbase/libbase.a(console.o)
+ .debug_str     0x00000000000103fc      0x1ed ../../build/sim/software/libbase/libbase.a(uart.o)
                                        0x6511 (size before relaxing)
- .debug_str     0x00000000000105b0       0x26 ../../build/sim/software/libbase/libbase.a(isr.o)
+ .debug_str     0x00000000000105e9       0x26 ../../build/sim/software/libbase/libbase.a(isr.o)
                                        0x750d (size before relaxing)
 
 .debug_line_str
