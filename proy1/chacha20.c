@@ -1,4 +1,3 @@
-chacha20.c
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
@@ -8,6 +7,16 @@ typedef struct {
     uint32_t state[16];
     uint32_t counter;  /* Contador de bloque para mensajes multi-bloque */
 } ChaCha20_State;
+
+/* Comparación simple de buffers (evita depender de memcmp de la libc) */
+static int buffers_equal(const uint8_t *a, const uint8_t *b, uint32_t length) {
+    for (uint32_t i = 0; i < length; i++) {
+        if (a[i] != b[i]) {
+            return 0;
+        }
+    }
+    return 1;
+}
 
 /* Funciones externas en ensamblador */
 extern void chacha20_block(uint32_t state[16], uint32_t out[16]);
@@ -115,11 +124,11 @@ void test_rfc8439_vector(void) {
         key[i] = i;
     }
     
-    /* Nonce: 0x00000009, 0x0000004a, 0x00000000 (little-endian) */
+    /* Nonce según RFC 8439 (bytes): 00 00 00 09 00 00 00 4a 00 00 00 00 */
     uint8_t nonce[12] = {
-        0x09, 0x00, 0x00, 0x00,
-        0x4a, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00
+	    0x00, 0x00, 0x00, 0x09,
+	    0x00, 0x00, 0x00, 0x4a,
+	    0x00, 0x00, 0x00, 0x00
     };
     
     /* Inicializa estado con contador = 1 */
@@ -190,7 +199,7 @@ void test_encrypt_decrypt(void) {
     printf("\n");
     
     /* Verifica */
-    if (memcmp((const uint8_t *)plaintext, decrypted, msg_len) == 0) {
+    if (buffers_equal((const uint8_t *)plaintext, decrypted, msg_len)) {
         printf("PASS\n");
     } else {
         printf("ERROR\n");
@@ -234,7 +243,61 @@ void test_multiblock_message(void) {
     printf("Desencriptado:             %s\n", decrypted);
     
     /* Verifica */
-    if (memcmp((const uint8_t *)long_msg, decrypted, msg_len) == 0) {
+    if (buffers_equal((const uint8_t *)long_msg, decrypted, msg_len)) {
+        printf("PASS\n");
+    } else {
+        printf("ERROR\n");
+    }
+}
+
+/* Caso de Prueba 4: Bloque final parcial */
+void test_partial_block_message(void) {
+    printf("\n=== Prueba 4: Bloque final parcial ===\n");
+
+    /* Genera un mensaje ASCII de 69 bytes para forzar un bloque parcial */
+    char partial_msg[70];
+    for (int i = 0; i < 69; i++) {
+        partial_msg[i] = 'A' + (i % 26);
+    }
+    partial_msg[69] = '\0';
+    uint32_t msg_len = strlen(partial_msg);
+
+    uint8_t key[32], nonce[12];
+    memset(key, 0xAA, 32);
+    memset(nonce, 0x00, 12);
+    nonce[0] = 0x10;
+    nonce[4] = 0x20;
+    nonce[8] = 0x30;
+
+    /* Encriptación */
+    ChaCha20_State enc_state;
+    chacha20_init(&enc_state, key, nonce, 0);
+
+    uint8_t ciphertext[80] = {0};
+    chacha20_encrypt(&enc_state, (const uint8_t *)partial_msg, ciphertext, msg_len);
+
+    uint32_t blocks = (msg_len + 63) / 64;
+    uint32_t tail_bytes = msg_len % 64;
+    if (tail_bytes == 0) {
+        tail_bytes = 64;
+    }
+
+    printf("Longitud del texto plano:  %u bytes\n", msg_len);
+    printf("Bloques procesados:        %u\n", blocks);
+    printf("Bytes en ultimo bloque:    %u\n", msg_len % 64);
+    printf("Texto cifrado (bloque final, hex): ");
+    print_hex(ciphertext + (blocks - 1) * 64, tail_bytes);
+
+    /* Desencriptación */
+    ChaCha20_State dec_state;
+    chacha20_init(&dec_state, key, nonce, 0);
+
+    uint8_t decrypted[80] = {0};
+    chacha20_encrypt(&dec_state, ciphertext, decrypted, msg_len);
+
+    printf("Desencriptado:             %s\n", decrypted);
+
+    if (buffers_equal((const uint8_t *)partial_msg, decrypted, msg_len)) {
         printf("PASS\n");
     } else {
         printf("ERROR\n");
@@ -250,6 +313,7 @@ void chacha20(void) {
     test_rfc8439_vector();
     test_encrypt_decrypt();
     test_multiblock_message();
+    test_partial_block_message();
     
     printf("\n===========================================");
     printf("  Todas las pruebas completadas\n");

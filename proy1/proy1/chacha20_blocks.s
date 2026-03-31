@@ -1,4 +1,3 @@
-chacha20_blocks.s
 # Función de Generación de Bloque ChaCha20 (RISC-V rv32i)
 # void chacha20_block(uint32_t state[16], uint32_t out[16])
 # a0 = puntero al estado (16 x uint32_t)
@@ -18,11 +17,9 @@ chacha20_block:
     
     # Copia estado a arreglo de copia (en pila en sp)
     li      t0, 0
+    li      t1, 16
 copy_state_loop:
-    bge     t0, zero, copy_state_loop
-    blt     t0, 16, copy_state_continue
-    j       copy_done
-copy_state_continue:
+    bge     t0, t1, copy_done
     slli    t2, t0, 2           # Desplazamiento = índice * 4
     add     t3, s0, t2
     lw      t4, 0(t3)
@@ -285,10 +282,9 @@ round_loop:
 rounds_done:
     # Suma el estado original a la copia de trabajo y almacena en salida
     li      t0, 0
-    
+    li      t1, 16
 add_state_loop:
-    blt     t0, 16, add_state_continue
-    j       add_state_done
+    bge     t0, t1, add_state_done
     
 add_state_continue:
     slli    t2, t0, 2
@@ -297,8 +293,8 @@ add_state_continue:
     add     t5, sp, t2
     lw      t6, 0(t5)
     add     t6, t6, t4
-    add     t7, s1, t2
-    sw      t6, 0(t7)
+    add     t3, s1, t2
+    sw      t6, 0(t3)
     addi    t0, t0, 1
     j       add_state_loop
 

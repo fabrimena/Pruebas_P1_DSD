@@ -51,6 +51,9 @@ VPATH = $(BIOS_DIRECTORY):$(BIOS_DIRECTORY)/cmds:$(CPU_DIRECTORY)
 %.o: %.S
 	$(assemble)
 
+%.o: %.s
+	$(assemble)
+
 clean:
 	$(RM) $(OBJECTS) proy1.elf proy1.bin .*~ *~
 

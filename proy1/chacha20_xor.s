@@ -1,4 +1,3 @@
-chacha20_xor.s
 # Función XOR de ChaCha20 (RISC-V rv32i)
 # void chacha20_xor(const uint8_t *keystream, const uint8_t *input,
 #                   uint8_t *output, uint32_t length)

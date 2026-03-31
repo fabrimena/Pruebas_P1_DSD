@@ -31,6 +31,7 @@ run:
 clean:
 	@echo "Cleaning software artifacts..."
 	rm -rf proy1/*.bin
+	$(MAKE) -C proy1/proy1 clean
 
 # Clean all build artifacts
 clean-all:

@@ -263,6 +263,13 @@ Discarded input sections
  .group         0x0000000000000000        0xc chacha20.o
  .group         0x0000000000000000        0xc chacha20.o
  .group         0x0000000000000000        0xc chacha20.o
+ .group         0x0000000000000000        0xc chacha20.o
+ .group         0x0000000000000000        0xc chacha20.o
+ .group         0x0000000000000000        0xc chacha20.o
+ .group         0x0000000000000000        0xc chacha20.o
+ .group         0x0000000000000000        0xc chacha20.o
+ .group         0x0000000000000000        0xc chacha20.o
+ .group         0x0000000000000000        0xc chacha20.o
  .data          0x0000000000000000        0x0 chacha20.o
  .bss           0x0000000000000000        0x0 chacha20.o
  .debug_macro   0x0000000000000000      0x7a8 chacha20.o
@@ -283,7 +290,11 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x1f0 chacha20.o
  .debug_macro   0x0000000000000000       0x4c chacha20.o
  .debug_macro   0x0000000000000000       0x22 chacha20.o
- .eh_frame      0x0000000000000000       0x28 chacha20.o
+ .eh_frame      0x0000000000000000      0x1c8 chacha20.o
+ .data          0x0000000000000000        0x0 chacha20_blocks.o
+ .bss           0x0000000000000000        0x0 chacha20_blocks.o
+ .data          0x0000000000000000        0x0 chacha20_xor.o
+ .bss           0x0000000000000000        0x0 chacha20_xor.o
  .group         0x0000000000000000        0xc main.o
  .group         0x0000000000000000        0xc main.o
  .group         0x0000000000000000        0xc main.o
@@ -341,6 +352,13 @@ Discarded input sections
  .debug_macro   0x0000000000000000      0x1f0 main.o
  .debug_macro   0x0000000000000000       0x4c main.o
  .debug_macro   0x0000000000000000       0x22 main.o
+ .debug_macro   0x0000000000000000       0x16 main.o
+ .debug_macro   0x0000000000000000       0x20 main.o
+ .debug_macro   0x0000000000000000       0x16 main.o
+ .debug_macro   0x0000000000000000       0x5e main.o
+ .debug_macro   0x0000000000000000       0x6a main.o
+ .debug_macro   0x0000000000000000       0xfd main.o
+ .debug_macro   0x0000000000000000      0x1df main.o
  .eh_frame      0x0000000000000000       0x5c main.o
  .group         0x0000000000000000        0xc ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_ctype_ctype_.o)
  .group         0x0000000000000000        0xc ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_ctype_ctype_.o)
@@ -1439,17 +1457,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
  .data          0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
  .bss           0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
- .text.memcpy   0x0000000000000000       0x24 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
- .debug_line    0x0000000000000000       0x7a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
- .debug_line_str
-                0x0000000000000000       0x86 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
- .debug_info    0x0000000000000000       0x24 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
- .debug_abbrev  0x0000000000000000       0x14 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
- .debug_aranges
-                0x0000000000000000       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
- .debug_str     0x0000000000000000       0x85 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
- .riscv.attributes
-                0x0000000000000000       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
  .text          0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memmove.o)
  .data          0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memmove.o)
  .bss           0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memmove.o)
@@ -1467,17 +1474,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
  .data          0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
  .bss           0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
- .text.memset   0x0000000000000000       0x1c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
- .debug_line    0x0000000000000000       0x6e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
- .debug_line_str
-                0x0000000000000000       0x7e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
- .debug_info    0x0000000000000000       0x24 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
- .debug_abbrev  0x0000000000000000       0x14 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
- .debug_aranges
-                0x0000000000000000       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
- .debug_str     0x0000000000000000       0x81 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
- .riscv.attributes
-                0x0000000000000000       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
  .text          0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
  .data          0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
  .bss           0x0000000000000000        0x0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
@@ -6003,6 +5999,8 @@ LOAD add_asm.o
 LOAD add.o
 LOAD crt0.o
 LOAD chacha20.o
+LOAD chacha20_blocks.o
+LOAD chacha20_xor.o
 LOAD main.o
 LOAD ../../build/sim/software/libc/libc.a
 LOAD ../../build/sim/software/libcompiler_rt/libcompiler_rt.a
@@ -6015,7 +6013,7 @@ LOAD ../../build/sim/software/liblitesdcard/liblitesdcard.a
 LOAD ../../build/sim/software/liblitesata/liblitesata.a
                 0x0000000000000000                __DYNAMIC = 0x0
 
-.text           0x0000000040000000     0x10d8
+.text           0x0000000040000000     0x1f20
                 0x0000000040000000                _ftext = .
  *crt0*(.text)
  .text          0x0000000040000000      0x128 crt0.o
@@ -6030,87 +6028,105 @@ LOAD ../../build/sim/software/liblitesata/liblitesata.a
                 0x0000000040000134                add_asm
  .text          0x000000004000013c        0x4 add.o
                 0x000000004000013c                add
- .text          0x0000000040000140        0xc chacha20.o
-                0x0000000040000140                chacha20
- .text          0x000000004000014c       0x64 main.o
- .text.startup  0x00000000400001b0      0x230 main.o
-                0x00000000400001b0                main
- .text          0x00000000400003e0       0x28 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
-                0x00000000400003e0                strchr
- .text          0x0000000040000408       0x24 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
-                0x0000000040000408                strnlen
- .text          0x000000004000042c       0x7c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
-                0x000000004000042c                getc_unlocked
-                0x000000004000042c                getc
-                0x000000004000042c                fgetc
- .text          0x00000000400004a8       0x74 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
-                0x00000000400004a8                fputs
- .text          0x000000004000051c       0x4c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
-                0x000000004000051c                printf
- .text          0x0000000040000568       0x88 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
-                0x0000000040000568                puts
- .text.strcmp   0x00000000400005f0       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
-                0x00000000400005f0                strcmp
- .text          0x0000000040000610       0x1c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
-                0x0000000040000610                strlen
- .text          0x000000004000062c      0x690 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
-                0x0000000040000678                __i_vfprintf
-                0x0000000040000678                vfprintf
- .text          0x0000000040000cbc       0x5c ../../build/sim/software/libc/libc.a(_libc_minimal.a)
- .text          0x0000000040000d18       0x74 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
-                0x0000000040000d18                __ctzsi2
- .text          0x0000000040000d8c        0x4 ../../build/sim/software/libbase/libbase.a(console.o)
-                0x0000000040000d8c                readchar_nonblock
- .text          0x0000000040000d90      0x234 ../../build/sim/software/libbase/libbase.a(uart.o)
-                0x0000000040000d90                uart_isr
-                0x0000000040000e54                uart_read
-                0x0000000040000e9c                uart_read_nonblock
-                0x0000000040000eb8                uart_write
-                0x0000000040000f34                uart_init
-                0x0000000040000fac                uart_sync
- .text          0x0000000040000fc4      0x114 ../../build/sim/software/libbase/libbase.a(isr.o)
-                0x0000000040000fc4                irq_attach
-                0x0000000040001028                irq_detach
-                0x0000000040001030                isr
-                0x00000000400010d8                _etext = .
+ .text          0x0000000040000140      0x9c0 chacha20.o
+                0x0000000040000140                chacha20_init
+                0x0000000040000240                chacha20_encrypt
+                0x0000000040000300                print_hex
+                0x000000004000035c                print_hex_words
+                0x00000000400003f4                test_rfc8439_vector
+                0x0000000040000514                test_encrypt_decrypt
+                0x00000000400006e4                test_multiblock_message
+                0x0000000040000888                test_partial_block_message
+                0x0000000040000a98                chacha20
+ .text          0x0000000040000b00      0x418 chacha20_blocks.o
+                0x0000000040000b00                chacha20_block
+ .text          0x0000000040000f18       0x3c chacha20_xor.o
+                0x0000000040000f18                chacha20_xor
+ .text          0x0000000040000f54       0x64 main.o
+ .text.startup  0x0000000040000fb8      0x230 main.o
+                0x0000000040000fb8                main
+ .text          0x00000000400011e8       0x28 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+                0x00000000400011e8                strchr
+ .text          0x0000000040001210       0x24 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
+                0x0000000040001210                strnlen
+ .text          0x0000000040001234       0x7c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+                0x0000000040001234                getc_unlocked
+                0x0000000040001234                getc
+                0x0000000040001234                fgetc
+ .text          0x00000000400012b0       0x74 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
+                0x00000000400012b0                fputs
+ .text          0x0000000040001324       0x4c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
+                0x0000000040001324                printf
+ .text          0x0000000040001370       0x88 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
+                0x0000000040001370                puts
+ .text.memcpy   0x00000000400013f8       0x24 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
+                0x00000000400013f8                memcpy
+ .text.memset   0x000000004000141c       0x1c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
+                0x000000004000141c                memset
+ .text.strcmp   0x0000000040001438       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
+                0x0000000040001438                strcmp
+ .text          0x0000000040001458       0x1c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
+                0x0000000040001458                strlen
+ .text          0x0000000040001474      0x690 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+                0x00000000400014c0                __i_vfprintf
+                0x00000000400014c0                vfprintf
+ .text          0x0000000040001b04       0x5c ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .text          0x0000000040001b60       0x74 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+                0x0000000040001b60                __ctzsi2
+ .text          0x0000000040001bd4        0x4 ../../build/sim/software/libbase/libbase.a(console.o)
+                0x0000000040001bd4                readchar_nonblock
+ .text          0x0000000040001bd8      0x234 ../../build/sim/software/libbase/libbase.a(uart.o)
+                0x0000000040001bd8                uart_isr
+                0x0000000040001c9c                uart_read
+                0x0000000040001ce4                uart_read_nonblock
+                0x0000000040001d00                uart_write
+                0x0000000040001d7c                uart_init
+                0x0000000040001df4                uart_sync
+ .text          0x0000000040001e0c      0x114 ../../build/sim/software/libbase/libbase.a(isr.o)
+                0x0000000040001e0c                irq_attach
+                0x0000000040001e70                irq_detach
+                0x0000000040001e78                isr
+                0x0000000040001f20                _etext = .
 
-.rodata         0x00000000400010d8      0x2d0
-                0x00000000400010d8                . = ALIGN (0x8)
- *fill*         0x00000000400010d8        0x0 
-                0x00000000400010d8                _frodata = .
+.rodata         0x0000000040001f20      0x6e0
+                0x0000000040001f20                . = ALIGN (0x8)
+                0x0000000040001f20                _frodata = .
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.4
-                0x00000000400010d8       0x12 helloc.o
- *fill*         0x00000000400010ea        0x2 
+                0x0000000040001f20       0x12 helloc.o
+ *fill*         0x0000000040001f32        0x2 
  .rodata.str1.4
-                0x00000000400010ec       0x1e chacha20.o
- *fill*         0x000000004000110a        0x2 
+                0x0000000040001f34      0x41d chacha20.o
+                                        0x421 (size before relaxing)
+ *fill*         0x0000000040002351        0x3 
+ .rodata        0x0000000040002354        0xc chacha20.o
  .rodata.str1.4
-                0x000000004000110c      0x195 main.o
+                0x0000000040002360      0x195 main.o
                                         0x199 (size before relaxing)
- *fill*         0x00000000400012a1        0x3 
+ *fill*         0x00000000400024f5        0x3 
  .rodata.str1.4
-                0x00000000400012a4       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .rodata        0x00000000400012b4       0x90 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+                0x00000000400024f8       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .rodata        0x0000000040002508       0x90 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
  .rodata.str1.4
-                0x0000000040001344       0x2f ../../build/sim/software/libbase/libbase.a(isr.o)
+                0x0000000040002598       0x2f ../../build/sim/software/libbase/libbase.a(isr.o)
  *(.rodata1)
  *(.got .got.*)
- *fill*         0x0000000040001373        0x1 
- .got           0x0000000040001374       0x2c helloc.o
-                0x0000000040001374                _GLOBAL_OFFSET_TABLE_
- .got.plt       0x00000000400013a0        0x8 helloc.o
+ *fill*         0x00000000400025c7        0x1 
+ .got           0x00000000400025c8       0x2c helloc.o
+                0x00000000400025c8                _GLOBAL_OFFSET_TABLE_
+ .got.plt       0x00000000400025f4        0x8 helloc.o
  *(.toc .toc.*)
-                0x00000000400013a8                . = ALIGN (0x8)
-                0x00000000400013a8                _erodata = .
+                0x0000000040002600                . = ALIGN (0x8)
+ *fill*         0x00000000400025fc        0x4 
+                0x0000000040002600                _erodata = .
 
-.eh_frame_hdr   0x00000000400013a8        0x0
- .eh_frame_hdr  0x00000000400013a8        0x0 helloc.o
+.eh_frame_hdr   0x0000000040002600        0x0
+ .eh_frame_hdr  0x0000000040002600        0x0 helloc.o
 
-.rela.dyn       0x00000000400013a8        0x0
- .rela.got      0x00000000400013a8        0x0 helloc.o
+.rela.dyn       0x0000000040002600        0x0
+ .rela.got      0x0000000040002600        0x0 helloc.o
 
-.data           0x0000000010000000       0x20 load address 0x00000000400013a8
+.data           0x0000000010000000       0x20 load address 0x0000000040002600
                 0x0000000010000000                . = ALIGN (0x8)
                 0x0000000010000000                _fdata = .
  *(.data .data.* .gnu.linkonce.d.*)
@@ -6128,7 +6144,7 @@ LOAD ../../build/sim/software/liblitesata/liblitesata.a
  *fill*         0x000000001000001c        0x4 
                 0x0000000010000020                _edata = .
 
-.bss            0x0000000010000020      0x160 load address 0x00000000400013c8
+.bss            0x0000000010000020      0x160 load address 0x0000000040002620
                 0x0000000010000020                . = ALIGN (0x8)
                 0x0000000010000020                _fbss = .
  *(.dynsbss)
@@ -6146,55 +6162,63 @@ LOAD ../../build/sim/software/liblitesata/liblitesata.a
                 0x0000000010000180                _ebss = .
                 0x0000000010000180                _end = .
                 0x0000000010002000                PROVIDE (_fstack = (ORIGIN (sram) + LENGTH (sram)))
-                0x00000000400013a8                PROVIDE (_fdata_rom = LOADADDR (.data))
+                0x0000000040002600                PROVIDE (_fdata_rom = LOADADDR (.data))
                 [!provide]                        PROVIDE (_edata_rom = (LOADADDR (.data) + SIZEOF (.data)))
 OUTPUT(proy1.elf elf32-littleriscv)
 
-.debug_info     0x0000000000000000     0x27ee
+.debug_info     0x0000000000000000     0x366f
  .debug_info    0x0000000000000000       0xc1 helloc.o
  .debug_info    0x00000000000000c1       0x24 add_asm.o
  .debug_info    0x00000000000000e5       0xda add.o
  .debug_info    0x00000000000001bf       0x25 crt0.o
- .debug_info    0x00000000000001e4       0xc1 chacha20.o
- .debug_info    0x00000000000002a5      0x7de main.o
- .debug_info    0x0000000000000a83       0xdf ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_info    0x0000000000000b62       0xd4 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
- .debug_info    0x0000000000000c36      0x23b ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_info    0x0000000000000e71      0x1f8 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
- .debug_info    0x0000000000001069      0x1f7 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
- .debug_info    0x0000000000001260      0x215 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
- .debug_info    0x0000000000001475       0x24 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
- .debug_info    0x0000000000001499       0xca ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
- .debug_info    0x0000000000001563      0x4f4 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .debug_info    0x0000000000001a57      0x24c ../../build/sim/software/libc/libc.a(_libc_minimal.a)
- .debug_info    0x0000000000001ca3       0xea ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
- .debug_info    0x0000000000001d8d       0x8f ../../build/sim/software/libbase/libbase.a(console.o)
- .debug_info    0x0000000000001e1c      0x691 ../../build/sim/software/libbase/libbase.a(uart.o)
- .debug_info    0x00000000000024ad      0x341 ../../build/sim/software/libbase/libbase.a(isr.o)
+ .debug_info    0x00000000000001e4      0xeaf chacha20.o
+ .debug_info    0x0000000000001093       0x25 chacha20_blocks.o
+ .debug_info    0x00000000000010b8       0x24 chacha20_xor.o
+ .debug_info    0x00000000000010dc      0x7e0 main.o
+ .debug_info    0x00000000000018bc       0xdf ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_info    0x000000000000199b       0xd4 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
+ .debug_info    0x0000000000001a6f      0x23b ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_info    0x0000000000001caa      0x1f8 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
+ .debug_info    0x0000000000001ea2      0x1f7 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
+ .debug_info    0x0000000000002099      0x215 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
+ .debug_info    0x00000000000022ae       0x24 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
+ .debug_info    0x00000000000022d2       0x24 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
+ .debug_info    0x00000000000022f6       0x24 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
+ .debug_info    0x000000000000231a       0xca ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
+ .debug_info    0x00000000000023e4      0x4f4 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_info    0x00000000000028d8      0x24c ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_info    0x0000000000002b24       0xea ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+ .debug_info    0x0000000000002c0e       0x8f ../../build/sim/software/libbase/libbase.a(console.o)
+ .debug_info    0x0000000000002c9d      0x691 ../../build/sim/software/libbase/libbase.a(uart.o)
+ .debug_info    0x000000000000332e      0x341 ../../build/sim/software/libbase/libbase.a(isr.o)
 
-.debug_abbrev   0x0000000000000000     0x1485
+.debug_abbrev   0x0000000000000000     0x171d
  .debug_abbrev  0x0000000000000000       0x8d helloc.o
  .debug_abbrev  0x000000000000008d       0x14 add_asm.o
  .debug_abbrev  0x00000000000000a1       0x8d add.o
  .debug_abbrev  0x000000000000012e       0x14 crt0.o
- .debug_abbrev  0x0000000000000142       0x8d chacha20.o
- .debug_abbrev  0x00000000000001cf      0x292 main.o
- .debug_abbrev  0x0000000000000461       0x8f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_abbrev  0x00000000000004f0       0x8c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
- .debug_abbrev  0x000000000000057c      0x163 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_abbrev  0x00000000000006df      0x149 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
- .debug_abbrev  0x0000000000000828      0x11d ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
- .debug_abbrev  0x0000000000000945      0x14d ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
- .debug_abbrev  0x0000000000000a92       0x14 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
- .debug_abbrev  0x0000000000000aa6       0x8a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
- .debug_abbrev  0x0000000000000b30      0x25f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .debug_abbrev  0x0000000000000d8f      0x173 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
- .debug_abbrev  0x0000000000000f02       0x7c ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
- .debug_abbrev  0x0000000000000f7e       0x68 ../../build/sim/software/libbase/libbase.a(console.o)
- .debug_abbrev  0x0000000000000fe6      0x244 ../../build/sim/software/libbase/libbase.a(uart.o)
- .debug_abbrev  0x000000000000122a      0x25b ../../build/sim/software/libbase/libbase.a(isr.o)
+ .debug_abbrev  0x0000000000000142      0x2d5 chacha20.o
+ .debug_abbrev  0x0000000000000417       0x14 chacha20_blocks.o
+ .debug_abbrev  0x000000000000042b       0x14 chacha20_xor.o
+ .debug_abbrev  0x000000000000043f      0x292 main.o
+ .debug_abbrev  0x00000000000006d1       0x8f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_abbrev  0x0000000000000760       0x8c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
+ .debug_abbrev  0x00000000000007ec      0x163 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_abbrev  0x000000000000094f      0x149 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
+ .debug_abbrev  0x0000000000000a98      0x11d ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
+ .debug_abbrev  0x0000000000000bb5      0x14d ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
+ .debug_abbrev  0x0000000000000d02       0x14 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
+ .debug_abbrev  0x0000000000000d16       0x14 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
+ .debug_abbrev  0x0000000000000d2a       0x14 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
+ .debug_abbrev  0x0000000000000d3e       0x8a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
+ .debug_abbrev  0x0000000000000dc8      0x25f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_abbrev  0x0000000000001027      0x173 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_abbrev  0x000000000000119a       0x7c ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+ .debug_abbrev  0x0000000000001216       0x68 ../../build/sim/software/libbase/libbase.a(console.o)
+ .debug_abbrev  0x000000000000127e      0x244 ../../build/sim/software/libbase/libbase.a(uart.o)
+ .debug_abbrev  0x00000000000014c2      0x25b ../../build/sim/software/libbase/libbase.a(isr.o)
 
-.debug_aranges  0x0000000000000000      0x288
+.debug_aranges  0x0000000000000000      0x308
  .debug_aranges
                 0x0000000000000000       0x20 helloc.o
  .debug_aranges
@@ -6206,37 +6230,45 @@ OUTPUT(proy1.elf elf32-littleriscv)
  .debug_aranges
                 0x0000000000000080       0x20 chacha20.o
  .debug_aranges
-                0x00000000000000a0       0x28 main.o
+                0x00000000000000a0       0x20 chacha20_blocks.o
  .debug_aranges
-                0x00000000000000c8       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+                0x00000000000000c0       0x20 chacha20_xor.o
  .debug_aranges
-                0x00000000000000e8       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
+                0x00000000000000e0       0x28 main.o
  .debug_aranges
-                0x0000000000000108       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+                0x0000000000000108       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
  .debug_aranges
-                0x0000000000000128       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
+                0x0000000000000128       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
  .debug_aranges
-                0x0000000000000148       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
+                0x0000000000000148       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
  .debug_aranges
-                0x0000000000000168       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
+                0x0000000000000168       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
  .debug_aranges
-                0x0000000000000188       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
+                0x0000000000000188       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
  .debug_aranges
-                0x00000000000001a8       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
+                0x00000000000001a8       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
  .debug_aranges
-                0x00000000000001c8       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+                0x00000000000001c8       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
  .debug_aranges
-                0x00000000000001e8       0x20 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+                0x00000000000001e8       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
  .debug_aranges
-                0x0000000000000208       0x20 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+                0x0000000000000208       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
  .debug_aranges
-                0x0000000000000228       0x20 ../../build/sim/software/libbase/libbase.a(console.o)
+                0x0000000000000228       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
  .debug_aranges
-                0x0000000000000248       0x20 ../../build/sim/software/libbase/libbase.a(uart.o)
+                0x0000000000000248       0x20 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
  .debug_aranges
-                0x0000000000000268       0x20 ../../build/sim/software/libbase/libbase.a(isr.o)
+                0x0000000000000268       0x20 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_aranges
+                0x0000000000000288       0x20 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+ .debug_aranges
+                0x00000000000002a8       0x20 ../../build/sim/software/libbase/libbase.a(console.o)
+ .debug_aranges
+                0x00000000000002c8       0x20 ../../build/sim/software/libbase/libbase.a(uart.o)
+ .debug_aranges
+                0x00000000000002e8       0x20 ../../build/sim/software/libbase/libbase.a(isr.o)
 
-.debug_macro    0x0000000000000000     0x5687
+.debug_macro    0x0000000000000000     0x56e6
  .debug_macro   0x0000000000000000       0xd1 helloc.o
  .debug_macro   0x00000000000000d1      0x7a8 helloc.o
  .debug_macro   0x0000000000000879       0x10 helloc.o
@@ -6257,108 +6289,112 @@ OUTPUT(proy1.elf elf32-littleriscv)
  .debug_macro   0x00000000000011e9       0x4c helloc.o
  .debug_macro   0x0000000000001235       0x22 helloc.o
  .debug_macro   0x0000000000001257       0xd1 add.o
- .debug_macro   0x0000000000001328       0xd1 chacha20.o
- .debug_macro   0x00000000000013f9      0x1e2 main.o
- .debug_macro   0x00000000000015db       0x16 main.o
- .debug_macro   0x00000000000015f1       0x97 main.o
- .debug_macro   0x0000000000001688       0x16 main.o
- .debug_macro   0x000000000000169e       0x3a main.o
- .debug_macro   0x00000000000016d8       0x29 main.o
- .debug_macro   0x0000000000001701       0x16 main.o
- .debug_macro   0x0000000000001717       0x20 main.o
- .debug_macro   0x0000000000001737       0x16 main.o
- .debug_macro   0x000000000000174d       0x5e main.o
- .debug_macro   0x00000000000017ab       0x86 main.o
- .debug_macro   0x0000000000001831       0x22 main.o
- .debug_macro   0x0000000000001853       0x94 main.o
- .debug_macro   0x00000000000018e7       0x1c main.o
- .debug_macro   0x0000000000001903       0x6a main.o
- .debug_macro   0x000000000000196d       0xfd main.o
- .debug_macro   0x0000000000001a6a      0x1df main.o
- .debug_macro   0x0000000000001c49       0x4a main.o
- .debug_macro   0x0000000000001c93      0x190 main.o
- .debug_macro   0x0000000000001e23       0x16 main.o
- .debug_macro   0x0000000000001e39       0x16 main.o
- .debug_macro   0x0000000000001e4f      0x1d1 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_macro   0x0000000000002020       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_macro   0x0000000000002030       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_macro   0x0000000000002040       0x12 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_macro   0x0000000000002052       0x16 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_macro   0x0000000000002068       0x9e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_macro   0x0000000000002106       0x16 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_macro   0x000000000000211c       0x34 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_macro   0x0000000000002150       0x6a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_macro   0x00000000000021ba       0x34 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_macro   0x00000000000021ee       0xb4 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
- .debug_macro   0x00000000000022a2      0x256 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x00000000000024f8       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000002508      0x11e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000002626      0x10e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000002734       0x58 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x000000000000278c       0x35 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x00000000000027c1       0x43 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000002804       0x17 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x000000000000281b      0x25c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000002a77       0x1c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000002a93      0x554 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000002fe7       0x3c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000003023       0x34 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000003057      0x183 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x00000000000031da      0x241 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x000000000000341b      0x196 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x00000000000035b1       0x16 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x00000000000035c7      0x1b1 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000003778       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000003788       0x64 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x00000000000037ec       0x1c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000003808       0x82 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x000000000000388a       0xa2 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x000000000000392c      0x2b0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000003bdc       0x12 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000003bee       0x2e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000003c1c       0xad ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_macro   0x0000000000003cc9      0x24a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
- .debug_macro   0x0000000000003f13      0x24a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
- .debug_macro   0x000000000000415d      0x24a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
- .debug_macro   0x00000000000043a7       0xec ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
- .debug_macro   0x0000000000004493      0x2dc ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .debug_macro   0x000000000000476f       0x16 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .debug_macro   0x0000000000004785       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .debug_macro   0x0000000000004795      0x73e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .debug_macro   0x0000000000004ed3       0x41 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .debug_macro   0x0000000000004f14       0x82 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .debug_macro   0x0000000000004f96       0x18 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .debug_macro   0x0000000000004fae      0x14a ../../build/sim/software/libc/libc.a(_libc_minimal.a)
- .debug_macro   0x00000000000050f8       0x94 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
- .debug_macro   0x000000000000518c       0xf6 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
- .debug_macro   0x0000000000005282       0xe1 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
- .debug_macro   0x0000000000005363       0xdb ../../build/sim/software/libbase/libbase.a(console.o)
- .debug_macro   0x000000000000543e       0xfc ../../build/sim/software/libbase/libbase.a(uart.o)
- .debug_macro   0x000000000000553a      0x14d ../../build/sim/software/libbase/libbase.a(isr.o)
+ .debug_macro   0x0000000000001328      0x130 chacha20.o
+ .debug_macro   0x0000000000001458       0x6a chacha20.o
+ .debug_macro   0x00000000000014c2       0xfd chacha20.o
+ .debug_macro   0x00000000000015bf      0x1df chacha20.o
+ .debug_macro   0x000000000000179e       0x16 chacha20.o
+ .debug_macro   0x00000000000017b4       0x20 chacha20.o
+ .debug_macro   0x00000000000017d4       0x16 chacha20.o
+ .debug_macro   0x00000000000017ea       0x5e chacha20.o
+ .debug_macro   0x0000000000001848      0x1e2 main.o
+ .debug_macro   0x0000000000001a2a       0x16 main.o
+ .debug_macro   0x0000000000001a40       0x97 main.o
+ .debug_macro   0x0000000000001ad7       0x16 main.o
+ .debug_macro   0x0000000000001aed       0x3a main.o
+ .debug_macro   0x0000000000001b27       0x29 main.o
+ .debug_macro   0x0000000000001b50       0x86 main.o
+ .debug_macro   0x0000000000001bd6       0x22 main.o
+ .debug_macro   0x0000000000001bf8       0x94 main.o
+ .debug_macro   0x0000000000001c8c       0x1c main.o
+ .debug_macro   0x0000000000001ca8       0x4a main.o
+ .debug_macro   0x0000000000001cf2      0x190 main.o
+ .debug_macro   0x0000000000001e82       0x16 main.o
+ .debug_macro   0x0000000000001e98       0x16 main.o
+ .debug_macro   0x0000000000001eae      0x1d1 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_macro   0x000000000000207f       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_macro   0x000000000000208f       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_macro   0x000000000000209f       0x12 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_macro   0x00000000000020b1       0x16 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_macro   0x00000000000020c7       0x9e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_macro   0x0000000000002165       0x16 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_macro   0x000000000000217b       0x34 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_macro   0x00000000000021af       0x6a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_macro   0x0000000000002219       0x34 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_macro   0x000000000000224d       0xb4 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
+ .debug_macro   0x0000000000002301      0x256 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000002557       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000002567      0x11e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000002685      0x10e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000002793       0x58 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x00000000000027eb       0x35 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000002820       0x43 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000002863       0x17 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x000000000000287a      0x25c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000002ad6       0x1c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000002af2      0x554 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000003046       0x3c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000003082       0x34 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x00000000000030b6      0x183 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000003239      0x241 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x000000000000347a      0x196 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000003610       0x16 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000003626      0x1b1 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x00000000000037d7       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x00000000000037e7       0x64 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x000000000000384b       0x1c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000003867       0x82 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x00000000000038e9       0xa2 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x000000000000398b      0x2b0 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000003c3b       0x12 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000003c4d       0x2e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000003c7b       0xad ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_macro   0x0000000000003d28      0x24a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
+ .debug_macro   0x0000000000003f72      0x24a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
+ .debug_macro   0x00000000000041bc      0x24a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
+ .debug_macro   0x0000000000004406       0xec ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
+ .debug_macro   0x00000000000044f2      0x2dc ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_macro   0x00000000000047ce       0x16 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_macro   0x00000000000047e4       0x10 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_macro   0x00000000000047f4      0x73e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_macro   0x0000000000004f32       0x41 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_macro   0x0000000000004f73       0x82 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_macro   0x0000000000004ff5       0x18 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_macro   0x000000000000500d      0x14a ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_macro   0x0000000000005157       0x94 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_macro   0x00000000000051eb       0xf6 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_macro   0x00000000000052e1       0xe1 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+ .debug_macro   0x00000000000053c2       0xdb ../../build/sim/software/libbase/libbase.a(console.o)
+ .debug_macro   0x000000000000549d       0xfc ../../build/sim/software/libbase/libbase.a(uart.o)
+ .debug_macro   0x0000000000005599      0x14d ../../build/sim/software/libbase/libbase.a(isr.o)
 
-.debug_line     0x0000000000000000     0x3487
+.debug_line     0x0000000000000000     0x487c
  .debug_line    0x0000000000000000       0xb5 helloc.o
  .debug_line    0x00000000000000b5       0x4a add_asm.o
  .debug_line    0x00000000000000ff       0xbe add.o
  .debug_line    0x00000000000001bd      0x1ce crt0.o
- .debug_line    0x000000000000038b       0xb5 chacha20.o
- .debug_line    0x0000000000000440      0x5d8 main.o
- .debug_line    0x0000000000000a18      0x197 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
- .debug_line    0x0000000000000baf       0xfd ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
- .debug_line    0x0000000000000cac      0x238 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
- .debug_line    0x0000000000000ee4      0x23a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
- .debug_line    0x000000000000111e      0x1d2 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
- .debug_line    0x00000000000012f0      0x260 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
- .debug_line    0x0000000000001550       0x74 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
- .debug_line    0x00000000000015c4      0x11b ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
- .debug_line    0x00000000000016df      0xe5e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
- .debug_line    0x000000000000253d      0x195 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
- .debug_line    0x00000000000026d2      0x1f8 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
- .debug_line    0x00000000000028ca       0xe2 ../../build/sim/software/libbase/libbase.a(console.o)
- .debug_line    0x00000000000029ac      0x76f ../../build/sim/software/libbase/libbase.a(uart.o)
- .debug_line    0x000000000000311b      0x36c ../../build/sim/software/libbase/libbase.a(isr.o)
+ .debug_line    0x000000000000038b      0xcc4 chacha20.o
+ .debug_line    0x000000000000104f      0x664 chacha20_blocks.o
+ .debug_line    0x00000000000016b3       0x9a chacha20_xor.o
+ .debug_line    0x000000000000174d      0x5d8 main.o
+ .debug_line    0x0000000000001d25      0x197 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_line    0x0000000000001ebc       0xfd ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
+ .debug_line    0x0000000000001fb9      0x238 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_line    0x00000000000021f1      0x23a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
+ .debug_line    0x000000000000242b      0x1d2 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
+ .debug_line    0x00000000000025fd      0x260 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
+ .debug_line    0x000000000000285d       0x7a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
+ .debug_line    0x00000000000028d7       0x6e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
+ .debug_line    0x0000000000002945       0x74 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
+ .debug_line    0x00000000000029b9      0x11b ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
+ .debug_line    0x0000000000002ad4      0xe5e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_line    0x0000000000003932      0x195 ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_line    0x0000000000003ac7      0x1f8 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+ .debug_line    0x0000000000003cbf       0xe2 ../../build/sim/software/libbase/libbase.a(console.o)
+ .debug_line    0x0000000000003da1      0x76f ../../build/sim/software/libbase/libbase.a(uart.o)
+ .debug_line    0x0000000000004510      0x36c ../../build/sim/software/libbase/libbase.a(isr.o)
 
-.debug_str      0x0000000000000000    0x1060f
+.debug_str      0x0000000000000000    0x10883
  .debug_str     0x0000000000000000     0x52a0 helloc.o
                                        0x53d7 (size before relaxing)
  .debug_str     0x00000000000052a0       0x2d add_asm.o
@@ -6366,40 +6402,48 @@ OUTPUT(proy1.elf elf32-littleriscv)
                                        0x53d1 (size before relaxing)
  .debug_str     0x00000000000052d5       0x36 crt0.o
                                          0x59 (size before relaxing)
- .debug_str     0x000000000000530b        0x9 chacha20.o
-                                       0x53d9 (size before relaxing)
- .debug_str     0x0000000000005314     0x2a6a main.o
+ .debug_str     0x000000000000530b     0x13a4 chacha20.o
+                                       0x689e (size before relaxing)
+ .debug_str     0x00000000000066af       0x12 chacha20_blocks.o
+                                         0x35 (size before relaxing)
+ .debug_str     0x00000000000066c1        0xf chacha20_xor.o
+                                         0x32 (size before relaxing)
+ .debug_str     0x00000000000066d0     0x1881 main.o
                                        0x7fc2 (size before relaxing)
- .debug_str     0x0000000000007d7e     0x1c28 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+ .debug_str     0x0000000000007f51     0x1c28 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
                                        0x6de4 (size before relaxing)
- .debug_str     0x00000000000099a6       0x1e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
+ .debug_str     0x0000000000009b79       0x1e ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
                                        0x43a4 (size before relaxing)
- .debug_str     0x00000000000099c4     0x3d8f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+ .debug_str     0x0000000000009b97     0x3d88 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
                                        0xae8c (size before relaxing)
- .debug_str     0x000000000000d753       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
+ .debug_str     0x000000000000d91f       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
                                        0xae81 (size before relaxing)
- .debug_str     0x000000000000d772       0x21 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
+ .debug_str     0x000000000000d93e       0x21 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
                                        0xae95 (size before relaxing)
- .debug_str     0x000000000000d793        0xa ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
+ .debug_str     0x000000000000d95f        0xa ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
                                        0xae8a (size before relaxing)
- .debug_str     0x000000000000d79d       0x75 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
+ .debug_str     0x000000000000d969       0x79 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
+                                         0x85 (size before relaxing)
+ .debug_str     0x000000000000d9e2       0x52 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
                                          0x81 (size before relaxing)
- .debug_str     0x000000000000d812       0x1a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
+ .debug_str     0x000000000000da34       0x52 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
+                                         0x81 (size before relaxing)
+ .debug_str     0x000000000000da86       0x1a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
                                        0x4efe (size before relaxing)
- .debug_str     0x000000000000d82c     0x2794 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+ .debug_str     0x000000000000daa0     0x2794 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
                                        0xdebf (size before relaxing)
- .debug_str     0x000000000000ffc0       0x7f ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .debug_str     0x0000000000010234       0x7f ../../build/sim/software/libc/libc.a(_libc_minimal.a)
                                        0x755d (size before relaxing)
- .debug_str     0x000000000001003f      0x3bd ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+ .debug_str     0x00000000000102b3      0x3bd ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
                                        0x5ce8 (size before relaxing)
- .debug_str     0x00000000000103fc     0x6301 ../../build/sim/software/libbase/libbase.a(console.o)
- .debug_str     0x00000000000103fc      0x1ed ../../build/sim/software/libbase/libbase.a(uart.o)
+ .debug_str     0x0000000000010670     0x6301 ../../build/sim/software/libbase/libbase.a(console.o)
+ .debug_str     0x0000000000010670      0x1ed ../../build/sim/software/libbase/libbase.a(uart.o)
                                        0x6511 (size before relaxing)
- .debug_str     0x00000000000105e9       0x26 ../../build/sim/software/libbase/libbase.a(isr.o)
+ .debug_str     0x000000000001085d       0x26 ../../build/sim/software/libbase/libbase.a(isr.o)
                                        0x750d (size before relaxing)
 
 .debug_line_str
-                0x0000000000000000      0xc1e
+                0x0000000000000000      0xc60
  .debug_line_str
                 0x0000000000000000      0x268 helloc.o
                                         0x2b4 (size before relaxing)
@@ -6413,52 +6457,64 @@ OUTPUT(proy1.elf elf32-littleriscv)
                 0x0000000000000278       0x36 crt0.o
                                          0x54 (size before relaxing)
  .debug_line_str
-                0x00000000000002ae        0xb chacha20.o
-                                        0x2ba (size before relaxing)
+                0x00000000000002ae       0x47 chacha20.o
+                                        0x31b (size before relaxing)
  .debug_line_str
-                0x00000000000002b9      0x14c main.o
+                0x00000000000002f5       0x12 chacha20_blocks.o
+                                         0x3b (size before relaxing)
+ .debug_line_str
+                0x0000000000000307        0xf chacha20_xor.o
+                                         0x35 (size before relaxing)
+ .debug_line_str
+                0x0000000000000316      0x11b main.o
                                         0x468 (size before relaxing)
  .debug_line_str
-                0x0000000000000405      0x1c8 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+                0x0000000000000431      0x1c8 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
                                         0x463 (size before relaxing)
  .debug_line_str
-                0x00000000000005cd       0x4c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
+                0x00000000000005f9       0x4c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
                                         0x2c9 (size before relaxing)
  .debug_line_str
-                0x0000000000000619       0xd3 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+                0x0000000000000645       0xd3 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
                                         0x437 (size before relaxing)
  .debug_line_str
-                0x00000000000006ec       0x49 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
+                0x0000000000000718       0x49 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
                                         0x437 (size before relaxing)
  .debug_line_str
-                0x0000000000000735       0x4a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
+                0x0000000000000761       0x4a ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
                                         0x43a (size before relaxing)
  .debug_line_str
-                0x000000000000077f       0x48 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
+                0x00000000000007ab       0x48 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
                                         0x434 (size before relaxing)
  .debug_line_str
-                0x00000000000007c7       0x52 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
+                0x00000000000007f3       0x56 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
+                                         0x86 (size before relaxing)
+ .debug_line_str
+                0x0000000000000849        0x9 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
                                          0x7e (size before relaxing)
  .debug_line_str
-                0x0000000000000819       0x68 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
+                0x0000000000000852        0x9 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
+                                         0x7e (size before relaxing)
+ .debug_line_str
+                0x000000000000085b       0x68 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
                                         0x311 (size before relaxing)
  .debug_line_str
-                0x0000000000000881      0x159 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+                0x00000000000008c3      0x159 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
                                         0x5ba (size before relaxing)
  .debug_line_str
-                0x00000000000009da       0x5c ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+                0x0000000000000a1c       0x5c ../../build/sim/software/libc/libc.a(_libc_minimal.a)
                                         0x466 (size before relaxing)
  .debug_line_str
-                0x0000000000000a36      0x124 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+                0x0000000000000a78      0x124 ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
                                         0x37e (size before relaxing)
  .debug_line_str
-                0x0000000000000b5a       0x5d ../../build/sim/software/libbase/libbase.a(console.o)
+                0x0000000000000b9c       0x5d ../../build/sim/software/libbase/libbase.a(console.o)
                                         0x3b7 (size before relaxing)
  .debug_line_str
-                0x0000000000000bb7       0x34 ../../build/sim/software/libbase/libbase.a(uart.o)
+                0x0000000000000bf9       0x34 ../../build/sim/software/libbase/libbase.a(uart.o)
                                         0x3b0 (size before relaxing)
  .debug_line_str
-                0x0000000000000beb       0x33 ../../build/sim/software/libbase/libbase.a(isr.o)
+                0x0000000000000c2d       0x33 ../../build/sim/software/libbase/libbase.a(isr.o)
                                         0x441 (size before relaxing)
 
 .comment        0x0000000000000000       0x2b
@@ -6531,74 +6587,86 @@ OUTPUT(proy1.elf elf32-littleriscv)
  .riscv.attributes
                 0x0000000000000080       0x1f chacha20.o
  .riscv.attributes
-                0x000000000000009f       0x23 main.o
+                0x000000000000009f       0x1f chacha20_blocks.o
  .riscv.attributes
-                0x00000000000000c2       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+                0x00000000000000be       0x1f chacha20_xor.o
  .riscv.attributes
-                0x00000000000000e1       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
+                0x00000000000000dd       0x23 main.o
  .riscv.attributes
-                0x0000000000000100       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+                0x0000000000000100       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
  .riscv.attributes
-                0x000000000000011f       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
+                0x000000000000011f       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
  .riscv.attributes
-                0x000000000000013e       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
+                0x000000000000013e       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
  .riscv.attributes
-                0x000000000000015d       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
+                0x000000000000015d       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
  .riscv.attributes
-                0x000000000000017c       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
+                0x000000000000017c       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
  .riscv.attributes
-                0x000000000000019b       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
+                0x000000000000019b       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
  .riscv.attributes
-                0x00000000000001ba       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+                0x00000000000001ba       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memcpy-asm.o)
  .riscv.attributes
-                0x00000000000001d9       0x1f ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+                0x00000000000001d9       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_memset.o)
  .riscv.attributes
-                0x00000000000001f8       0x1f ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+                0x00000000000001f8       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strcmp.o)
  .riscv.attributes
-                0x0000000000000217       0x1f ../../build/sim/software/libbase/libbase.a(console.o)
+                0x0000000000000217       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
  .riscv.attributes
-                0x0000000000000236       0x23 ../../build/sim/software/libbase/libbase.a(uart.o)
+                0x0000000000000236       0x1f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
  .riscv.attributes
-                0x0000000000000259       0x23 ../../build/sim/software/libbase/libbase.a(isr.o)
+                0x0000000000000255       0x1f ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+ .riscv.attributes
+                0x0000000000000274       0x1f ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+ .riscv.attributes
+                0x0000000000000293       0x1f ../../build/sim/software/libbase/libbase.a(console.o)
+ .riscv.attributes
+                0x00000000000002b2       0x23 ../../build/sim/software/libbase/libbase.a(uart.o)
+ .riscv.attributes
+                0x00000000000002d5       0x23 ../../build/sim/software/libbase/libbase.a(isr.o)
 
 .debug_loclists
-                0x0000000000000000     0x1224
+                0x0000000000000000     0x16b5
  .debug_loclists
                 0x0000000000000000       0x40 add.o
  .debug_loclists
-                0x0000000000000040      0x11d main.o
+                0x0000000000000040      0x490 chacha20.o
  .debug_loclists
-                0x000000000000015d       0x4c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
+                0x00000000000004d0      0x11e main.o
  .debug_loclists
-                0x00000000000001a9       0xb6 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
+                0x00000000000005ee       0x4c ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strchr.o)
  .debug_loclists
-                0x000000000000025f       0x9b ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
+                0x000000000000063a       0xb6 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_string_strnlen.o)
  .debug_loclists
-                0x00000000000002fa       0x84 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
+                0x00000000000006f0       0x9b ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fgetc.o)
  .debug_loclists
-                0x000000000000037e       0x31 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
+                0x000000000000078b       0x84 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_fputs.o)
  .debug_loclists
-                0x00000000000003af       0x7f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
+                0x000000000000080f       0x31 ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_printf.o)
  .debug_loclists
-                0x000000000000042e       0x3d ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
+                0x0000000000000840       0x7f ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_puts.o)
  .debug_loclists
-                0x000000000000046b      0x76d ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+                0x00000000000008bf       0x3d ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_machine_riscv_strlen.o)
  .debug_loclists
-                0x0000000000000bd8       0x5a ../../build/sim/software/libc/libc.a(_libc_minimal.a)
+                0x00000000000008fc      0x76d ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
  .debug_loclists
-                0x0000000000000c32      0x2da ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
+                0x0000000000001069       0x5a ../../build/sim/software/libc/libc.a(_libc_minimal.a)
  .debug_loclists
-                0x0000000000000f0c      0x211 ../../build/sim/software/libbase/libbase.a(uart.o)
+                0x00000000000010c3      0x2da ../../build/sim/software/libcompiler_rt/libcompiler_rt.a(ctzsi2.o)
  .debug_loclists
-                0x000000000000111d      0x107 ../../build/sim/software/libbase/libbase.a(isr.o)
+                0x000000000000139d      0x211 ../../build/sim/software/libbase/libbase.a(uart.o)
+ .debug_loclists
+                0x00000000000015ae      0x107 ../../build/sim/software/libbase/libbase.a(isr.o)
 
 .debug_rnglists
-                0x0000000000000000      0x2b6
+                0x0000000000000000      0x359
  .debug_rnglists
-                0x0000000000000000       0xa1 main.o
+                0x0000000000000000       0xa3 chacha20.o
  .debug_rnglists
-                0x00000000000000a1       0xeb ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
+                0x00000000000000a3       0xa1 main.o
  .debug_rnglists
-                0x000000000000018c       0xb6 ../../build/sim/software/libbase/libbase.a(uart.o)
+                0x0000000000000144       0xeb ../../build/sim/software/libc/libc.a(minimal__workspace_build_sim_software_include_.._picolibc_src_libc_stdio_vfiprintf.o)
  .debug_rnglists
-                0x0000000000000242       0x74 ../../build/sim/software/libbase/libbase.a(isr.o)
+                0x000000000000022f       0xb6 ../../build/sim/software/libbase/libbase.a(uart.o)
+ .debug_rnglists
+                0x00000000000002e5       0x74 ../../build/sim/software/libbase/libbase.a(isr.o)

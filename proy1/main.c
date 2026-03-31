@@ -108,7 +108,7 @@ static void helloc_cmd(void)
 extern int add(int a, int b);
 static void add_cmd(void)
 {
-	int a = 2;
+	int a = 34;
 	int b = 3;
 	printf("Adding %d + %d is = %d \r\n", a, b, add(a,b));
 }
