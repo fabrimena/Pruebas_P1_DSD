@@ -2,21 +2,10 @@
 
 ## 1. Introducción
 
-El objetivo de este proyecto es implementar y probar el cifrador de flujo **ChaCha20** sobre un procesador **RISC‑V** integrado en un sistema‑en‑chip generado con **LiteX**, utilizando como referencia principal la especificación del algoritmo en el RFC 8439 y las indicaciones del enunciado *proyectos_EL3310_proyecto1_1S2026*. 
-
-El trabajo combina aspectos de diseño digital, arquitectura de computadores y programación de bajo nivel:
-
-- Comprensión del funcionamiento interno de ChaCha20 (estado, rondas y operaciones ARX).
-- Implementación del núcleo criptográfico en ensamblador RISC‑V.
-- Integración del módulo con código en C encargado de inicializar el estado, administrar el contador de bloques y realizar el cifrado/descifrado de mensajes.
-- Diseño y ejecución de pruebas que demuestran el correcto funcionamiento del algoritmo, incluyendo mensajes de longitud múltiplo y no múltiplo de 64 bytes.
-
+El objetivo de este proyecto es implementar y probar el cifrador de flujo **ChaCha20** sobre un procesador **RISC‑V** integrado en un sistema‑en‑chip generado con **LiteX**, utilizando como referencia principal la especificación del algoritmo en el RFC 8439 y las indicaciones del enunciado *proyectos_EL3310_proyecto1_1S2026*.  
 La implementación final se integra en la BIOS de LiteX como un comando que permite ejecutar una demo de ChaCha20 directamente en la consola de la simulación.
 
 ## 2. Objetivos del proyecto
-
-De acuerdo con el enunciado del proyecto, los objetivos principales que se abordan en esta implementación son:
-
 1. **Implementar el algoritmo ChaCha20** respetando la estructura de estado, el orden de las rondas y las operaciones indicadas en la especificación.
 2. **Separar responsabilidades entre C y ensamblador**, dejando en C la inicialización del estado y la lógica de cifrado de alto nivel, y en ensamblador la función de bloque de 20 rondas y la operación XOR sobre el mensaje.
 3. **Integrar la solución en el entorno LiteX/VexRiscv**, compilando con la toolchain cruzada RISC‑V y generando una imagen ejecutable en la simulación del SoC.
