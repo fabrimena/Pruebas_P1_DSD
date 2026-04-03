@@ -9,7 +9,7 @@ El trabajo combina aspectos de diseño digital, arquitectura de computadores y p
 - Comprensión del funcionamiento interno de ChaCha20 (estado, rondas y operaciones ARX).
 - Implementación del núcleo criptográfico en ensamblador RISC‑V.
 - Integración del módulo con código en C encargado de inicializar el estado, administrar el contador de bloques y realizar el cifrado/descifrado de mensajes.
-- Diseño y ejecución de pruebas que demuestran el correcto funcionamiento del algoritmo, incluyendo mensajes de longitud múltiplo y no múltiplo de 64 bytes, tal como exige la sección 3.5.x del enunciado.
+- Diseño y ejecución de pruebas que demuestran el correcto funcionamiento del algoritmo, incluyendo mensajes de longitud múltiplo y no múltiplo de 64 bytes.
 
 La implementación final se integra en la BIOS de LiteX como un comando que permite ejecutar una demo de ChaCha20 directamente en la consola de la simulación.
 
@@ -24,7 +24,7 @@ De acuerdo con el enunciado del proyecto, los objetivos principales que se abord
 	- Verificación contra un vector de prueba del RFC 8439.
 	- Cifrado y descifrado simétrico de un mensaje corto.
 	- Cifrado de un mensaje que ocupa varios bloques de 64 bytes.
-	- Demostración explícita del manejo de un **bloque final parcial** (mensaje de longitud no múltiplo de 64 bytes), cumpliendo lo solicitado en el punto 3.5.2 del documento.
+	- Demostración explícita del manejo de un **bloque final parcial** (mensaje de longitud no múltiplo de 64 bytes).
 
 ## 3. Descripción teórica de ChaCha20
 
