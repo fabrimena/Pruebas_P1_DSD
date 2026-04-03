@@ -27,7 +27,7 @@ Este documento describe la implementación del cifrador de flujo **ChaCha20** so
 Se dividió el sistema en dos niveles:
 
 ```
-![Diagrama](/images/Diagrama_division.drawio.png.png)
+![Diagrama](/images/Diagrama_division.drawio.png)
 ```
 
 ### Decisión clave
