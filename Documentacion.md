@@ -2,7 +2,7 @@
 
 # Implementación de ChaCha20 en RISC‑V (LiteX) – Guía Técnica
 -Profesor: Dr.-Ing. Jorge Castro-Godínez.  
--Estudiantes: *Fabricio Mena Mejia, , .
+-Estudiantes: Fabricio Mena Mejia, , .
 
 ## Introducción
 
