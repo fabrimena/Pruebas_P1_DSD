@@ -1,7 +1,7 @@
 ﻿# Proyecto 1 – EL3310 Diseño de Sistemas Digitales
 
 # Implementación de ChaCha20 en RISC‑V (LiteX) – Guía Técnica
--Profesor: Dr.-Ing. Jorge Castro-Godínez.
+-Profesor: Dr.-Ing. Jorge Castro-Godínez.  
 -Estudiantes: *Fabricio Mena Mejia, , .
 
 ## Introducción
