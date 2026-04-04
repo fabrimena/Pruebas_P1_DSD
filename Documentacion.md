@@ -58,7 +58,12 @@ La función de inicialización en C (`chacha20_init`) se encarga de construir el
 * Cargar las **constantes** de ChaCha20 en las posiciones 0–3 del arreglo `state[16]`.
 * Copiar la **clave de 256 bits** (32 bytes) a las posiciones 4–11 del estado, realizando la conversión explícita a **little-endian** para que cada grupo de 4 bytes forme correctamente una palabra de 32 bits.
 * Escribir el **contador de bloque inicial** en la posición 12 del estado y, en paralelo, en el campo `counter` de la estructura, de modo que el código de alto nivel pueda manejarlo de forma explícita.
-* Insertar el **nonce de 96 bits** (12 bytes) en las posiciones 13–15, también en formato little-endian, siguiendo el orden exigido por el RFC 8439.
+* Insertar el **nonce de 96 bits** (12 bytes) en las posiciones 13–15, también en formato little-endian, siguiendo el orden exigido por el RFC 8439 [1].  
+
+<figure>
+  <img src="images/Matriz_chacha20.png" alt="Matriz" width="500">
+  <figcaption>Figura 1: Matriz de estado ChaCha20 del documento [2]</figcaption>
+</figure>
 
 Esta función valida el tamaño de los arreglos de clave y nonce mediante constantes del código (no usa memoria dinámica) y deja el estado listo para que `chacha20_block` pueda generar el primer bloque de keystream sin modificar los parámetros originales.
 
@@ -125,6 +130,11 @@ Mientras haya datos:
 
 Además del cifrado/descifrado, el archivo `chacha20.c` incluye funciones de apoyo que organizan la demostración del algoritmo:
 
+En cada iteración del bucle, la implementación calcula cuántos bytes quedan por procesar y limita el tamaño del fragmento actual a un máximo de 64 bytes (el tamaño del bloque de ChaCha20). Si la longitud total del mensaje no es múltiplo de 64, el último bloque tendrá
+\(L_\text{mod} = L - 64 \cdot \lfloor L/64 \rfloor\) bytes (con \(1 \leq L_\text{mod} < 64\)), y solo esos bytes se pasan a `chacha20_xor`. El resto del keystream generado por `chacha20_block` en ese último bloque se descarta. De esta manera, no se introduce ningún relleno artificial y el cifrado se aplica exactamente sobre los bytes válidos del mensaje.
+
+En la Prueba 4 (bloque final parcial), por ejemplo, un mensaje de 69 bytes se procesa en dos bloques: un bloque completo de 64 bytes y un último bloque parcial de 5 bytes, donde únicamente los 5 primeros bytes del segundo bloque de keystream se usan en la operación XOR.
+
 * **Rutinas de impresión** (`print_hex`, `print_hex_words`): permiten mostrar en la consola LiteX los contenidos de buffers y palabras en formato hexadecimal, facilitando la comparación visual con los vectores del RFC.
 * **Comparación de buffers** (`buffers_equal`): recorre byte a byte dos arreglos y devuelve si son iguales, reemplazando a `memcmp` para ajustarse a las restricciones de la BIOS y mantener el control total del código.
 
@@ -140,6 +150,8 @@ Todas estas pruebas se orquestan desde una función principal (`chacha20()`), qu
 ---
 
 ## Pruebas Implementadas
+
+Para verificar el resutlado de las pruebas se utilizó la página referenciada en [3].
 
 ### 1. Vector RFC 8439
 
@@ -172,6 +184,15 @@ Resultado: PASS
 
 Resultado: PASS
 
+En la ejecución de la demo se observa explícitamente:
+
+* Longitud del texto plano: 69 bytes
+* Bloques procesados: 2
+* Bytes en el último bloque: 5
+* Texto cifrado del bloque final (hex): `5b3d301ddf`
+
+Tras aplicar nuevamente `chacha20_encrypt` sobre el texto cifrado, se recupera exactamente el mensaje original, lo que confirma que solo se utilizan los 5 bytes válidos del último bloque y que el resto del keystream generado en ese bloque parcial se descarta adecuadamente.
+
 ---
 
 ## Resultados Generales
@@ -184,6 +205,13 @@ Resultado: PASS
 | Partial block   | PASS      |
 
 La implementación es funcional y correcta
+
+En la salida de la demo `chacha20` en la consola de LiteX se aprecia que todas las pruebas se comportan según lo esperado:
+
+* En la **Prueba 1**, las primeras cuatro palabras del flujo de clave obtenido (`e4e7f110 15593bd1 1fdd0f50 c47120a3`) coinciden exactamente con las palabras esperadas del RFC 8439, validando la implementación del bloque ChaCha20.
+* En la **Prueba 2**, el texto plano "Hola Mundo ChaCha20" se cifra en una secuencia hexadecimal (`438180f0...f945a2`) y se recupera de forma idéntica tras el descifrado, demostrando la simetría del cifrador de flujo.
+* En la **Prueba 3**, un mensaje de 131 bytes (mayor a 64) se cifra y descifra correctamente, evidenciando que el contador de bloques se administra bien en el caso multi‑bloque.
+* En la **Prueba 4**, un mensaje de 69 bytes se procesa en 2 bloques, utilizando solo 5 bytes del último bloque de keystream y recuperando el texto original, lo que confirma el manejo correcto del bloque final parcial descrito en la sección de cifrado.
 
 ---
 
@@ -241,5 +269,4 @@ Además, el diseño es claro, modular y extensible.
 
 [2] Dr.-Ing. Jorge Castro-Godínez, "EL3310 Proyecto 1," Documentos del curso EL3310, Escuela de Ingeniería Electrónica, Tecnológico de Costa Rica (TEC), Cartago, Costa Rica, Semestre I, 2026. [En línea]. Disponible en: https://tecdigital.tec.ac.cr/dotlrn/classes/E/EL3310/S-1-2026.CA.EL3310.2/file-storage/view/Proyectos%2FEL3310_proyecto1_1S2026.pdf
 
-
-
+[3] LDDGO, "ChaCha20 Encrypt/Decrypt Online," LDDGO Tools, 2026. [Online]. Available: https://www.lddgo.net/en/encrypt/chacha20-encrypt-decrypt. [Accessed: Apr. 3, 2026].

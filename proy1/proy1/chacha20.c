@@ -155,6 +155,64 @@ void test_rfc8439_vector(void) {
     }
 }
 
+/* Caso de Prueba 1 (opción extra): Vector RFC 8439 completo (16 palabras) */
+void test_rfc8439_full_vector(void) {
+    printf("\n=== Vector RFC 8439 completo ===\n");
+
+    /* Clave: 0x00 a 0x1f (32 bytes) */
+    uint8_t key[32];
+    for (int i = 0; i < 32; i++) {
+        key[i] = i;
+    }
+
+    /* Nonce según RFC 8439 (bytes): 00 00 00 09 00 00 00 4a 00 00 00 00 */
+    uint8_t nonce[12] = {
+	    0x00, 0x00, 0x00, 0x09,
+	    0x00, 0x00, 0x00, 0x4a,
+	    0x00, 0x00, 0x00, 0x00
+    };
+
+    /* Inicializa estado con contador = 1 */
+    ChaCha20_State state;
+    chacha20_init(&state, key, nonce, 1);
+
+    /* Genera primer bloque completo */
+    uint32_t keystream[16] = {0};
+    chacha20_block(state.state, keystream);
+
+    /* Vector esperado completo de 16 palabras según RFC 8439 */
+    uint32_t expected[16] = {
+        0xe4e7f110, 0x15593bd1, 0x1fdd0f50, 0xc47120a3,
+        0xc7f4d1c7, 0x0368c033, 0x9aaa2204, 0x4e6cd4c3,
+        0x466482d2, 0x09aa9f07, 0x05d7c214, 0xa2028bd9,
+        0xd19c12b5, 0xb94e16de, 0xe883d0cb, 0x4e3c50a2
+    };
+
+    printf("Flujo de clave obtenido (16 palabras):\n");
+    for (int row = 0; row < 4; row++) {
+        print_hex_words(&keystream[row * 4], 4);
+    }
+
+    printf("Vector esperado RFC 8439:\n");
+    for (int row = 0; row < 4; row++) {
+        print_hex_words(&expected[row * 4], 4);
+    }
+
+    int ok = 1;
+    for (int i = 0; i < 16; i++) {
+        if (keystream[i] != expected[i]) {
+            ok = 0;
+            break;
+        }
+    }
+
+    if (ok) {
+        printf("PASS\n");
+    } else {
+        printf("ERROR\n");
+    }
+}
+
 /* Caso de Prueba 2: Ciclo Completo de Encriptación/Desencriptación */
 void test_encrypt_decrypt(void) {
     printf("\n=== Prueba 2: Ciclo Encriptación/Desencriptación ===\n");
@@ -230,8 +288,7 @@ void test_multiblock_message(void) {
     
     printf("Longitud del texto plano:  %d bytes\n", msg_len);
     printf("Texto cifrado (hex):       ");
-    print_hex(ciphertext, (msg_len > 32) ? 32 : msg_len);
-    printf("                           ... (truncado)\n");
+    print_hex(ciphertext, msg_len);
     
     /* Desencriptación */
     ChaCha20_State dec_state;
@@ -244,6 +301,63 @@ void test_multiblock_message(void) {
     
     /* Verifica */
     if (buffers_equal((const uint8_t *)long_msg, decrypted, msg_len)) {
+        printf("PASS\n");
+    } else {
+        printf("ERROR\n");
+    }
+}
+
+/* Caso de Prueba interactiva: mensaje ingresado manualmente (similar a multi-bloque) */
+void test_manual_message(void) {
+    printf("\n=== Prueba interactiva: Mensaje ingresado por el usuario ===\n");
+    printf("Ingrese un mensaje y presione Enter:\n> ");
+
+    char input[256];
+    uint32_t msg_len = 0;
+    int ch;
+
+    while (msg_len < sizeof(input) - 1) {
+        ch = getchar();
+        if (ch == '\n' || ch == '\r') {
+            putchar('\n');
+            break;
+        }
+        input[msg_len++] = (char)ch;
+        putchar((char)ch);    /* eco en tiempo real */
+    }
+    input[msg_len] = '\0';
+
+    if (msg_len == 0) {
+        printf("Mensaje vacío, nada que cifrar.\n");
+        return;
+    }
+
+    uint8_t key[32], nonce[12];
+    memset(key, 0x55, 32);
+    memset(nonce, 0x00, 12);
+    nonce[0] = 0x99;
+
+    /* Encriptación */
+    ChaCha20_State enc_state;
+    chacha20_init(&enc_state, key, nonce, 0);
+
+    uint8_t ciphertext[256] = {0};
+    chacha20_encrypt(&enc_state, (const uint8_t *)input, ciphertext, msg_len);
+
+    printf("Longitud del texto plano:  %u bytes\n", msg_len);
+    printf("Texto cifrado (hex):       ");
+    print_hex(ciphertext, msg_len);
+
+    /* Desencriptación */
+    ChaCha20_State dec_state;
+    chacha20_init(&dec_state, key, nonce, 0);
+
+    uint8_t decrypted[256] = {0};
+    chacha20_encrypt(&dec_state, ciphertext, decrypted, msg_len);
+
+    printf("Desencriptado:             %s\n", decrypted);
+
+    if (buffers_equal((const uint8_t *)input, decrypted, msg_len)) {
         printf("PASS\n");
     } else {
         printf("ERROR\n");
@@ -306,16 +420,43 @@ void test_partial_block_message(void) {
 
 /* Función principal de demostración de ChaCha20 */
 void chacha20(void) {
-    printf("===========================================");
+    printf("\n===========================================\n");
     printf("  Implementación Cifrado ChaCha20 (RISC-V)\n");
-    printf("===========================================");
-    
-    test_rfc8439_vector();
-    test_encrypt_decrypt();
-    test_multiblock_message();
-    test_partial_block_message();
-    
-    printf("\n===========================================");
-    printf("  Todas las pruebas completadas\n");
     printf("===========================================\n");
+
+    printf("\nSeleccione una opción:\n");
+    printf("1) Ejecutar todas las pruebas (1-4)\n");
+    printf("2) Vector RFC 8439 completo (16 palabras)\n");
+    printf("3) Prueba interactiva con texto ingresado por el usuario\n");
+    printf("Opción: ");
+
+    int option = getchar();
+    printf("%c\n", option);  /* eco de la opción */
+
+    /* Consumir el resto de la línea (hasta Enter) */
+    int c;
+    while ((c = getchar()) != '\n' && c != '\r') {
+        /* descartar */
+    }
+
+    switch (option) {
+        case '1':
+            test_rfc8439_vector();
+            test_encrypt_decrypt();
+            test_multiblock_message();
+            test_partial_block_message();
+            printf("\n===========================================\n");
+            printf("  Todas las pruebas completadas\n");
+            printf("===========================================\n");
+            break;
+        case '2':
+            test_rfc8439_full_vector();
+            break;
+        case '3':
+            test_manual_message();
+            break;
+        default:
+            printf("\nOpción no válida.\n");
+            break;
+    }
 }
