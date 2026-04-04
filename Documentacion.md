@@ -40,18 +40,30 @@ Se implementó el núcleo en ensamblador porque:
 
 ## Detalles de Implementación
 
-### 1. Estado interno
+### 1. Módulo en C: `chacha20.c`
 
-El estado se representa como:
+#### 1.1 Estado interno
+
+En `chacha20.c` se define la estructura de datos principal que representa el estado de ChaCha20:
 
 ```c
 typedef struct {
-    uint32_t state[16];
-    uint32_t counter;
+            uint32_t state[16];
+            uint32_t counter;
 } ChaCha20_State;
 ```
 
-### 2. Inicialización
+Este estado contiene:
+
+* 16 palabras de 32 bits (`state[16]`), que corresponden a las constantes, la clave, el contador de bloque y el nonce, dispuestas como en la matriz de 4×4 descrita en [1] y [2].
+* Un contador de bloque adicional (`counter`) que se usa para llevar el control explícito de cuántos bloques se han generado durante el cifrado de un mensaje.
+
+<figure>
+      <img src="images/Matriz_chacha20.png" alt="Matriz" width="500">
+      <figcaption>Figura 1: Matriz de estado ChaCha20 del documento [2]</figcaption>
+</figure>
+
+#### 1.2 Inicialización (`chacha20_init`)
 
 La función de inicialización en C (`chacha20_init`) se encarga de construir el estado interno a partir de los parámetros externos (clave, contador y nonce). Sus responsabilidades son:
 
@@ -60,92 +72,90 @@ La función de inicialización en C (`chacha20_init`) se encarga de construir el
 * Escribir el **contador de bloque inicial** en la posición 12 del estado y, en paralelo, en el campo `counter` de la estructura, de modo que el código de alto nivel pueda manejarlo de forma explícita.
 * Insertar el **nonce de 96 bits** (12 bytes) en las posiciones 13–15, también en formato little-endian, siguiendo el orden exigido por el RFC 8439 [1].  
 
-<figure>
-  <img src="images/Matriz_chacha20.png" alt="Matriz" width="500">
-  <figcaption>Figura 1: Matriz de estado ChaCha20 del documento [2]</figcaption>
-</figure>
-
 Esta función valida el tamaño de los arreglos de clave y nonce mediante constantes del código (no usa memoria dinámica) y deja el estado listo para que `chacha20_block` pueda generar el primer bloque de keystream sin modificar los parámetros originales.
 
----
+#### 1.3 Cifrado de alto nivel (`chacha20_encrypt`)
 
-### 3. Función `chacha20_block` (Assembly)
+La función `chacha20_encrypt` implementa el cifrado/descifrado de mensajes de longitud arbitraria sobre el estado anterior. Maneja:
 
-#### Flujo:
+* Bloques completos de 64 bytes.
+* El incremento del contador de bloque tras cada bloque procesado.
+* El caso de **bloques parciales** cuando la longitud del mensaje no es múltiplo de 64 bytes.
 
-1. Copia del estado a la pila
-2. 10 double rounds
-3. Suma con estado original
-4. Escritura a salida
-
-#### Diagrama de flujo simplificado:
+El flujo general es:
 
 ```
-Estado inicial
-      ↓
-Copiar a working state
-      ↓
-10 iteraciones:
-   - Column rounds
-   - Diagonal rounds
-      ↓
-Sumar estado original
-      ↓
-Keystream (64 bytes)
+Mientras haya datos por procesar:
+            copiar el contador actual al estado
+            generar bloque de keystream con chacha20_block
+            determinar longitud del fragmento actual (<= 64)
+            XOR entre keystream y fragmento de datos (chacha20_xor)
+            incrementar contador de bloque
 ```
 
-Decisión importante:
+En cada iteración del bucle, la implementación calcula cuántos bytes quedan por procesar y limita el tamaño del fragmento actual a un máximo de 64 bytes (el tamaño del bloque de ChaCha20). Si la longitud total del mensaje es \(L\) y no es múltiplo de 64, el último bloque tendrá
 
-* Uso de la pila para evitar modificar el estado original
+\[ L_\text{mod} = L - 64 \cdot \left\lfloor \frac{L}{64} \right\rfloor \]
 
----
-
-### 4. Función `chacha20_xor`
-
-* Implementación byte a byte
-* Evita dependencias externas
-
-Tradeoff:
-
-* Más simple pero menos eficiente que una versión vectorizada
-
----
-
-### 5. Cifrado (`chacha20_encrypt`)
-
-Maneja:
-
-* Bloques de 64 bytes
-* Incremento del contador
-* Bloques parciales
-
-#### Flujo:
-
-```
-Mientras haya datos:
-    generar keystream
-    XOR con bloque
-    incrementar contador
-```
-
-Además del cifrado/descifrado, el archivo `chacha20.c` incluye funciones de apoyo que organizan la demostración del algoritmo:
-
-En cada iteración del bucle, la implementación calcula cuántos bytes quedan por procesar y limita el tamaño del fragmento actual a un máximo de 64 bytes (el tamaño del bloque de ChaCha20). Si la longitud total del mensaje no es múltiplo de 64, el último bloque tendrá
-\(L_\text{mod} = L - 64 \cdot \lfloor L/64 \rfloor\) bytes (con \(1 \leq L_\text{mod} < 64\)), y solo esos bytes se pasan a `chacha20_xor`. El resto del keystream generado por `chacha20_block` en ese último bloque se descarta. De esta manera, no se introduce ningún relleno artificial y el cifrado se aplica exactamente sobre los bytes válidos del mensaje.
+bytes, con \(1 \leq L_\text{mod} < 64\), y solo esos bytes se pasan a `chacha20_xor`. El resto del keystream generado por `chacha20_block` en ese último bloque se descarta. De esta manera, no se introduce ningún relleno artificial y el cifrado se aplica exactamente sobre los bytes válidos del mensaje.
 
 En la Prueba 4 (bloque final parcial), por ejemplo, un mensaje de 69 bytes se procesa en dos bloques: un bloque completo de 64 bytes y un último bloque parcial de 5 bytes, donde únicamente los 5 primeros bytes del segundo bloque de keystream se usan en la operación XOR.
+
+#### 1.4 Funciones auxiliares y pruebas en `chacha20.c`
+
+Además del cifrado/descifrado, el archivo `chacha20.c` incluye funciones de apoyo que organizan la demostración del algoritmo:
 
 * **Rutinas de impresión** (`print_hex`, `print_hex_words`): permiten mostrar en la consola LiteX los contenidos de buffers y palabras en formato hexadecimal, facilitando la comparación visual con los vectores del RFC.
 * **Comparación de buffers** (`buffers_equal`): recorre byte a byte dos arreglos y devuelve si son iguales, reemplazando a `memcmp` para ajustarse a las restricciones de la BIOS y mantener el control total del código.
 
-Finalmente, en `chacha20.c` se implementa un conjunto de **funciones de prueba** que ejercitan la implementación con distintos escenarios:
+También se implementa un conjunto de **funciones de prueba** que ejercitan la implementación con distintos escenarios:
 
 * `test_rfc8439_vector`: prepara clave, contador y nonce específicos del RFC 8439, llama una vez a `chacha20_block` y compara el bloque de salida con el vector de referencia.
+* `test_rfc8439_full_vector`: muestra y compara las 16 palabras completas del bloque generado con el vector oficial del RFC.
 * `test_encrypt_decrypt`: cifra y luego descifra un mensaje corto, demostrando la reversibilidad del cifrador de flujo.
 * `test_multiblock_message`: utiliza un mensaje largo que obliga a usar varios bloques de 64 bytes y verifica el manejo del contador de bloque.
 * `test_partial_block_message`: fuerza un mensaje cuya longitud no es múltiplo de 64 bytes y muestra explícitamente cómo se procesa el último bloque parcial.
+* `test_manual_message`: permite al usuario ingresar un mensaje por consola, cifrarlo y descifrarlo de forma interactiva.
 
-Todas estas pruebas se orquestan desde una función principal (`chacha20()`), que se registra como comando en la BIOS de LiteX a través de `main.c`. Al ejecutar dicho comando en la consola, el usuario puede observar paso a paso los resultados de cada prueba y confirmar el cumplimiento de los requisitos del proyecto.
+Todas estas pruebas se orquestan desde una función principal (`chacha20()`), que se registra como comando en la BIOS de LiteX a través de `main.c`. Al ejecutar dicho comando en la consola, el usuario selecciona la opción deseada del menú y puede observar paso a paso los resultados de cada prueba.
+
+---
+
+### 2. Módulo en ensamblador: `chacha20_blocks.s`
+
+El archivo `chacha20_blocks.s` contiene la implementación en ensamblador RISC‑V de la función de bloque de ChaCha20 (`chacha20_block`), responsable de generar 64 bytes de flujo de clave a partir del estado.
+
+#### 2.1 Flujo de la función `chacha20_block`
+
+1. **Copia del estado a la pila**: se reserva espacio en la pila para las 16 palabras del estado y se copian desde el puntero de entrada. De esta forma, la función trabaja sobre una copia local sin modificar el estado original.
+2. **Bucle de 10 double rounds (20 rondas)**: en cada iteración se aplican:
+       * Cuatro *column rounds* (QR(0,4,8,12), QR(1,5,9,13), QR(2,6,10,14), QR(3,7,11,15)).
+       * Cuatro *diagonal rounds* (QR(0,5,10,15), QR(1,6,11,12), QR(2,7,8,13), QR(3,4,9,14)).
+       Cada *quarter round* realiza las operaciones ARX (sumas módulo \(2^{32}\), rotaciones de 16, 12, 8 y 7 bits, y XOR) usando registros temporales.
+3. **Suma con el estado original**: al final del bucle, cada palabra de la copia transformada se suma con la palabra correspondiente del estado original y el resultado se escribe en el arreglo de salida (16 palabras, 64 bytes de keystream).
+
+La función respeta la convención de llamada RISC‑V: preserva los registros callee‑saved, usa registros temporales para los cálculos internos y devuelve el resultado únicamente a través del puntero de salida.
+
+---
+
+### 3. Módulo en ensamblador: `chacha20_xor.s`
+
+El archivo `chacha20_xor.s` implementa en ensamblador RISC‑V la operación de XOR entre el flujo de clave generado por `chacha20_block` y los datos de entrada.
+
+La función `chacha20_xor` recibe:
+
+* Un puntero al keystream (64 bytes por bloque).
+* Un puntero al buffer de entrada (texto plano o cifrado).
+* Un puntero al buffer de salida.
+* La longitud en bytes a procesar.
+
+Su funcionamiento es un bucle simple:
+
+1. Mientras queden bytes por procesar, carga un byte del keystream y uno del buffer de entrada.
+2. Calcula el XOR de ambos y lo escribe en el buffer de salida.
+3. Avanza los punteros y decrementa el contador de bytes restantes.
+
+Esta rutina se usa tanto para cifrar como para descifrar, y es llamada desde `chacha20_encrypt` para cada bloque (completo o parcial) de hasta 64 bytes.
 
 ---
 
