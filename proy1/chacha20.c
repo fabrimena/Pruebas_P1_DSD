@@ -264,9 +264,9 @@ void test_encrypt_decrypt(void) {
     }
 }
 
-/* Caso de Prueba 3: Mensaje Multi-bloque */
+/* Caso de Prueba 3: Mensaje Multi-bloque con bloque final parcial */
 void test_multiblock_message(void) {
-    printf("\n=== Prueba 3: Mensaje Multi-bloque ===\n");
+    printf("\n=== Prueba 3: Mensaje Multi-bloque y bloque final parcial ===\n");
     
     /* Crea un mensaje más largo que 64 bytes */
     const char *long_msg = 
@@ -285,10 +285,20 @@ void test_multiblock_message(void) {
     
     uint8_t ciphertext[256] = {0};
     chacha20_encrypt(&enc_state, (const uint8_t *)long_msg, ciphertext, msg_len);
-    
-    printf("Longitud del texto plano:  %d bytes\n", msg_len);
+
+    uint32_t blocks = (msg_len + 63) / 64;
+    uint32_t tail_bytes = msg_len % 64;
+    if (tail_bytes == 0) {
+        tail_bytes = 64;
+    }
+
+    printf("Longitud del texto plano:  %u bytes\n", msg_len);
+    printf("Bloques procesados:        %u\n", blocks);
+    printf("Bytes en ultimo bloque:    %u\n", tail_bytes);
     printf("Texto cifrado (hex):       ");
     print_hex(ciphertext, msg_len);
+    printf("Texto cifrado (bloque final, hex): ");
+    print_hex(ciphertext + (blocks - 1) * 64, tail_bytes);
     
     /* Desencriptación */
     ChaCha20_State dec_state;
@@ -364,60 +374,6 @@ void test_manual_message(void) {
     }
 }
 
-/* Caso de Prueba 4: Bloque final parcial */
-void test_partial_block_message(void) {
-    printf("\n=== Prueba 4: Bloque final parcial ===\n");
-
-    /* Genera un mensaje ASCII de 69 bytes para forzar un bloque parcial */
-    char partial_msg[70];
-    for (int i = 0; i < 69; i++) {
-        partial_msg[i] = 'A' + (i % 26);
-    }
-    partial_msg[69] = '\0';
-    uint32_t msg_len = strlen(partial_msg);
-
-    uint8_t key[32], nonce[12];
-    memset(key, 0xAA, 32);
-    memset(nonce, 0x00, 12);
-    nonce[0] = 0x10;
-    nonce[4] = 0x20;
-    nonce[8] = 0x30;
-
-    /* Encriptación */
-    ChaCha20_State enc_state;
-    chacha20_init(&enc_state, key, nonce, 0);
-
-    uint8_t ciphertext[80] = {0};
-    chacha20_encrypt(&enc_state, (const uint8_t *)partial_msg, ciphertext, msg_len);
-
-    uint32_t blocks = (msg_len + 63) / 64;
-    uint32_t tail_bytes = msg_len % 64;
-    if (tail_bytes == 0) {
-        tail_bytes = 64;
-    }
-
-    printf("Longitud del texto plano:  %u bytes\n", msg_len);
-    printf("Bloques procesados:        %u\n", blocks);
-    printf("Bytes en ultimo bloque:    %u\n", msg_len % 64);
-    printf("Texto cifrado (bloque final, hex): ");
-    print_hex(ciphertext + (blocks - 1) * 64, tail_bytes);
-
-    /* Desencriptación */
-    ChaCha20_State dec_state;
-    chacha20_init(&dec_state, key, nonce, 0);
-
-    uint8_t decrypted[80] = {0};
-    chacha20_encrypt(&dec_state, ciphertext, decrypted, msg_len);
-
-    printf("Desencriptado:             %s\n", decrypted);
-
-    if (buffers_equal((const uint8_t *)partial_msg, decrypted, msg_len)) {
-        printf("PASS\n");
-    } else {
-        printf("ERROR\n");
-    }
-}
-
 /* Función principal de demostración de ChaCha20 */
 void chacha20(void) {
     printf("\n===========================================\n");
@@ -425,7 +381,7 @@ void chacha20(void) {
     printf("===========================================\n");
 
     printf("\nSeleccione una opción:\n");
-    printf("1) Ejecutar todas las pruebas (1-4)\n");
+    printf("1) Ejecutar todas las pruebas (1-3)\n");
     printf("2) Vector RFC 8439 completo (16 palabras)\n");
     printf("3) Prueba interactiva con texto ingresado por el usuario\n");
     printf("Opción: ");
@@ -444,7 +400,6 @@ void chacha20(void) {
             test_rfc8439_vector();
             test_encrypt_decrypt();
             test_multiblock_message();
-            test_partial_block_message();
             printf("\n===========================================\n");
             printf("  Todas las pruebas completadas\n");
             printf("===========================================\n");

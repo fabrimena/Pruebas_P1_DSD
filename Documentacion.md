@@ -93,11 +93,11 @@ Mientras haya datos por procesar:
             incrementar contador de bloque
 ```
 
-En cada iteración del bucle, la implementación calcula cuántos bytes quedan por procesar y limita el tamaño del fragmento actual a un máximo de 64 bytes (el tamaño del bloque de ChaCha20). Si la longitud total del mensaje es \(L\) y no es múltiplo de 64, el último bloque tendrá
+En cada iteración del bucle, la implementación calcula cuántos bytes quedan por procesar y limita el tamaño del fragmento actual a un máximo de 64 bytes (el tamaño del bloque de ChaCha20). Si la longitud total del mensaje es L y no es múltiplo de 64, el último bloque tendrá
 
-\[ L_\text{mod} = L - 64 \cdot \left\lfloor \frac{L}{64} \right\rfloor \]
+      L_mod = L - 64 * floor(L / 64)
 
-bytes, con \(1 \leq L_\text{mod} < 64\), y solo esos bytes se pasan a `chacha20_xor`. El resto del keystream generado por `chacha20_block` en ese último bloque se descarta. De esta manera, no se introduce ningún relleno artificial y el cifrado se aplica exactamente sobre los bytes válidos del mensaje.
+bytes, con 1 ≤ L_mod < 64, y solo esos bytes se pasan a `chacha20_xor`. El resto del keystream generado por `chacha20_block` en ese último bloque se descarta. De esta manera, no se introduce ningún relleno artificial y el cifrado se aplica exactamente sobre los bytes válidos del mensaje.
 
 En la Prueba 4 (bloque final parcial), por ejemplo, un mensaje de 69 bytes se procesa en dos bloques: un bloque completo de 64 bytes y un último bloque parcial de 5 bytes, donde únicamente los 5 primeros bytes del segundo bloque de keystream se usan en la operación XOR.
 
@@ -113,8 +113,7 @@ También se implementa un conjunto de **funciones de prueba** que ejercitan la i
 * `test_rfc8439_vector`: prepara clave, contador y nonce específicos del RFC 8439, llama una vez a `chacha20_block` y compara el bloque de salida con el vector de referencia.
 * `test_rfc8439_full_vector`: muestra y compara las 16 palabras completas del bloque generado con el vector oficial del RFC.
 * `test_encrypt_decrypt`: cifra y luego descifra un mensaje corto, demostrando la reversibilidad del cifrador de flujo.
-* `test_multiblock_message`: utiliza un mensaje largo que obliga a usar varios bloques de 64 bytes y verifica el manejo del contador de bloque.
-* `test_partial_block_message`: fuerza un mensaje cuya longitud no es múltiplo de 64 bytes y muestra explícitamente cómo se procesa el último bloque parcial.
+* `test_multiblock_message`: utiliza un mensaje largo que obliga a usar varios bloques de 64 bytes, calcula el número de bloques y el tamaño del último bloque parcial, y muestra tanto el cifrado completo como el bloque final parcial.
 * `test_manual_message`: permite al usuario ingresar un mensaje por consola, cifrarlo y descifrarlo de forma interactiva.
 
 Todas estas pruebas se orquestan desde una función principal (`chacha20()`), que se registra como comando en la BIOS de LiteX a través de `main.c`. Al ejecutar dicho comando en la consola, el usuario selecciona la opción deseada del menú y puede observar paso a paso los resultados de cada prueba.
@@ -125,13 +124,18 @@ Todas estas pruebas se orquestan desde una función principal (`chacha20()`), qu
 
 El archivo `chacha20_blocks.s` contiene la implementación en ensamblador RISC‑V de la función de bloque de ChaCha20 (`chacha20_block`), responsable de generar 64 bytes de flujo de clave a partir del estado.
 
+<figure>
+      <img src="images/Funcion_bloque.png" alt="Bloque" width="500">
+      <figcaption>Figura 2: Funcion chacha20_block en C [2]</figcaption>
+</figure>
+
 #### 2.1 Flujo de la función `chacha20_block`
 
 1. **Copia del estado a la pila**: se reserva espacio en la pila para las 16 palabras del estado y se copian desde el puntero de entrada. De esta forma, la función trabaja sobre una copia local sin modificar el estado original.
 2. **Bucle de 10 double rounds (20 rondas)**: en cada iteración se aplican:
        * Cuatro *column rounds* (QR(0,4,8,12), QR(1,5,9,13), QR(2,6,10,14), QR(3,7,11,15)).
        * Cuatro *diagonal rounds* (QR(0,5,10,15), QR(1,6,11,12), QR(2,7,8,13), QR(3,4,9,14)).
-       Cada *quarter round* realiza las operaciones ARX (sumas módulo \(2^{32}\), rotaciones de 16, 12, 8 y 7 bits, y XOR) usando registros temporales.
+      Cada *quarter round* realiza las operaciones ARX (sumas módulo 2^32, rotaciones de 16, 12, 8 y 7 bits, y XOR) usando registros temporales.
 3. **Suma con el estado original**: al final del bucle, cada palabra de la copia transformada se suma con la palabra correspondiente del estado original y el resultado se escribe en el arreglo de salida (16 palabras, 64 bytes de keystream).
 
 La función respeta la convención de llamada RISC‑V: preserva los registros callee‑saved, usa registros temporales para los cálculos internos y devuelve el resultado únicamente a través del puntero de salida.
@@ -141,6 +145,11 @@ La función respeta la convención de llamada RISC‑V: preserva los registros c
 ### 3. Módulo en ensamblador: `chacha20_xor.s`
 
 El archivo `chacha20_xor.s` implementa en ensamblador RISC‑V la operación de XOR entre el flujo de clave generado por `chacha20_block` y los datos de entrada.
+
+<figure>
+      <img src="images/Funcion_xor.png" alt="XOR" width="500">
+      <figcaption>Figura 2: Funcion chacha20_xor en C [2]</figcaption>
+</figure>
 
 La función `chacha20_xor` recibe:
 
@@ -180,28 +189,22 @@ Resultado: PASS
 
 ---
 
-### 3. Multi‑bloque
+### 3. Multi‑bloque con bloque final parcial
 
-* Verifica incremento correcto del contador
+La tercera prueba utiliza un mensaje más largo que 64 bytes (por ejemplo, 131 bytes) con el fin de verificar simultáneamente:
 
-Resultado: PASS
+* El incremento correcto del contador de bloque a lo largo de varios bloques.
+* El manejo adecuado de un **bloque final parcial** cuando la longitud total del mensaje no es múltiplo de 64.
 
----
+En esta prueba se muestra explícitamente:
 
-### 4. Bloque parcial
+* La longitud total del texto plano.
+* El número de bloques de 64 bytes procesados.
+* El número de bytes efectivos del último bloque parcial.
+* El texto cifrado completo en hexadecimal.
+* El texto cifrado correspondiente únicamente al último bloque parcial.
 
-* Verifica manejo de longitudes no múltiplo de 64
-
-Resultado: PASS
-
-En la ejecución de la demo se observa explícitamente:
-
-* Longitud del texto plano: 69 bytes
-* Bloques procesados: 2
-* Bytes en el último bloque: 5
-* Texto cifrado del bloque final (hex): `5b3d301ddf`
-
-Tras aplicar nuevamente `chacha20_encrypt` sobre el texto cifrado, se recupera exactamente el mensaje original, lo que confirma que solo se utilizan los 5 bytes válidos del último bloque y que el resto del keystream generado en ese bloque parcial se descarta adecuadamente.
+Tras aplicar nuevamente `chacha20_encrypt` sobre el texto cifrado, se recupera exactamente el mensaje original, lo que confirma tanto el correcto manejo del contador multi‑bloque como el descarte adecuado del keystream sobrante en el último bloque parcial.
 
 ---
 
@@ -209,10 +212,9 @@ Tras aplicar nuevamente `chacha20_encrypt` sobre el texto cifrado, se recupera e
 
 | Prueba          | Resultado |
 | --------------- | --------- |
-| RFC 8439        | PASS      |
-| Encrypt/Decrypt | PASS      |
-| Multi-block     | PASS      |
-| Partial block   | PASS      |
+| RFC 8439                    | PASS      |
+| Encrypt/Decrypt             | PASS      |
+| Multi-block + bloque parcial| PASS      |
 
 La implementación es funcional y correcta
 
@@ -220,8 +222,7 @@ En la salida de la demo `chacha20` en la consola de LiteX se aprecia que todas l
 
 * En la **Prueba 1**, las primeras cuatro palabras del flujo de clave obtenido (`e4e7f110 15593bd1 1fdd0f50 c47120a3`) coinciden exactamente con las palabras esperadas del RFC 8439, validando la implementación del bloque ChaCha20.
 * En la **Prueba 2**, el texto plano "Hola Mundo ChaCha20" se cifra en una secuencia hexadecimal (`438180f0...f945a2`) y se recupera de forma idéntica tras el descifrado, demostrando la simetría del cifrador de flujo.
-* En la **Prueba 3**, un mensaje de 131 bytes (mayor a 64) se cifra y descifra correctamente, evidenciando que el contador de bloques se administra bien en el caso multi‑bloque.
-* En la **Prueba 4**, un mensaje de 69 bytes se procesa en 2 bloques, utilizando solo 5 bytes del último bloque de keystream y recuperando el texto original, lo que confirma el manejo correcto del bloque final parcial descrito en la sección de cifrado.
+* En la **Prueba 3**, un mensaje de 131 bytes (mayor a 64) se cifra y descifra correctamente, evidenciando que el contador de bloques se administra bien en el caso multi‑bloque. Además, se muestra que el último bloque parcial (3 bytes en este caso) se procesa usando solo los primeros 3 bytes del último bloque de keystream, descartando el resto y recuperando el texto original, lo que confirma el manejo correcto del bloque final parcial descrito en la sección de cifrado.
 
 ---
 
@@ -262,14 +263,10 @@ En la salida de la demo `chacha20` en la consola de LiteX se aprecia que todas l
 
 ## Conclusión
 
-La implementación cumple completamente con:
-
-* Especificación RFC 8439
-* Requisitos del proyecto
-* Separación C/Assembly
-* Manejo de bloques y casos borde
-
-Además, el diseño es claro, modular y extensible.
+- Se implementó ChaCha20 conforme al RFC 8439 sobre RISC‑V/LiteX.
+- Se separó la lógica entre C y ensamblador respetando la ABI RISC‑V.
+- Se verificó el cifrado/descifrado correcto en casos de un bloque, múltiples bloques y bloque final parcial.
+- Se integró el algoritmo como comando de BIOS en LiteX y se validó con pruebas automáticas e interactivas.
 
 ---
 
